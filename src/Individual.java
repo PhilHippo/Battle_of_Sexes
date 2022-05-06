@@ -23,7 +23,11 @@ public abstract class Individual extends Thread{
 
         public Individual(int tag,int age,int points){
             this.status=true;
-            this.age=age;
+            if (age < 0 || age > 100) {
+                throw new IllegalArgumentException();
+            } else {
+                this.age = age;
+            }
             this.death_rate=0;
             this.coniuge=null;
             this.children=new ArrayList<Individual>();
