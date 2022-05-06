@@ -7,7 +7,6 @@ public class Female extends Individual{
 
     public Female(int tag,int age,double points) {
         super(tag,age,points);
-
     }
 
 

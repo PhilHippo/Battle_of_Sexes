@@ -13,7 +13,9 @@ public class Main {
         Lorenzo.die();
         */
 
+
         //test
+
         Settings sett = new Settings(0,0,0,0,100,10);
         Population p = new Population(1001,1000,sett);
         System.out.println(p.get_n_individual());
