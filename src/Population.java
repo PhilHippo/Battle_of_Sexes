@@ -3,9 +3,6 @@ public class Population {
         for (int i = 0; i < 5; i++) {
             System.out.println("simone");
         }
-        for (int i = 0; i < 5; i++) {
-            System.out.println(" provo simone");
-        }
     }
 
 }
