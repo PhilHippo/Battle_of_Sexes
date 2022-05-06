@@ -10,7 +10,7 @@ public class Male extends Individual{
     private int tag;
     private int points;
 
-    public Male(int tag,int age,int points){
+    public Male(int tag,int age,double points){
         super(tag,age,points);
     }
 
