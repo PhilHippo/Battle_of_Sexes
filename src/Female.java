@@ -8,9 +8,12 @@ public class Female extends Individual{
     private Individual coniuge;
     private ArrayList<Individual> children;
     private int tag;
+    // visto che Coy and Fast fanno la stessa cosa basta che settiamo Coy SRC a 5-10 anni, e Fast a 0-1 anni    (per anni intendo iterazione)
+    private int success_rate_court;
 
     public Female(int tag,int age,int points) {
         super(tag,age,points);
+
     }
 
 
@@ -42,7 +45,9 @@ public class Female extends Individual{
     }
 
 
+    private int get_success_courtship(int tag){
 
+    }
 
 
 
