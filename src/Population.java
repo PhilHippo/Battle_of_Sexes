@@ -57,7 +57,7 @@ public class Population {
 
     }
     private void create_people(int f,int p,int c,int s,double initial_point){
-
+        // for loop più efficiente
         for (int i = 0; i <= f; i++) {
             Faithful person = new Faithful(1,18,initial_point);
             individuals.add(person);

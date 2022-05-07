@@ -25,7 +25,7 @@ public abstract class Individual extends Thread{
                 this.age = age;
             }
             this.coniuge=null;
-            this.children=new ArrayList<Individual>();
+            this.children=new ArrayList<>();
             this.tag=tag;
             this.points=points;
         }
@@ -33,7 +33,7 @@ public abstract class Individual extends Thread{
         public void die(){ this.status=false;  }
 
         // da decide quanto toglie
-        public void aging(int x){
+        public void aging(int x){ // l'età non ci serve
             this.age+=1;
             this.points-=x;
             if ( points <= 0){
@@ -54,13 +54,12 @@ public abstract class Individual extends Thread{
             try {
                 sleep(500); // maturità
                 // n_popolazione--;
-
+                //altre cose
 
             } catch (InterruptedException e) {
                 System.out.println("was sleeping...");
             }
         }
-
 
 
 }

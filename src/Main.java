@@ -10,6 +10,7 @@ public class Main {
         while (a > 0 ) {/*while there isn't stability or resources aren't finished
              p.haveseggs;  method in population that tells every random individual to try to copulate
              resources are calculated and stored
+             ogni iterazione è una generazione (scelta migliore) o un anno (scelta pessima)
             */
         }
 
