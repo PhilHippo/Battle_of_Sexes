@@ -5,7 +5,6 @@ public abstract class Individual extends Thread{
 
         protected boolean status;
         protected int age;
-        protected double death_rate;
         protected Individual coniuge;
         protected ArrayList<Individual> children;
         protected final int tag;
@@ -25,7 +24,6 @@ public abstract class Individual extends Thread{
             } else {
                 this.age = age;
             }
-            this.death_rate=0;
             this.coniuge=null;
             this.children=new ArrayList<Individual>();
             this.tag=tag;
@@ -52,6 +50,16 @@ public abstract class Individual extends Thread{
         public void marriage(Individual i){this.coniuge=i;}
 
         public void get_points(double x){ this.points+=x;}  // da vede
+        public void run() {
+            try {
+                sleep(500); // maturità
+                // n_popolazione--;
+
+
+            } catch (InterruptedException e) {
+                System.out.println("was sleeping...");
+            }
+        }
 
 
 

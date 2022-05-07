@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 import java.util.Random;
 public class Female extends Individual{
 
@@ -10,36 +10,57 @@ public class Female extends Individual{
     }
 
 
-    // I dont know how to write efficient mutation
-    public void Give_birth(){
-
-        double points_for_kid=0; // da decide come dare
-
-        Random rand = new Random();
-        // x%2=0 male
-        // x%2=1 female
-        int x = rand.nextInt(0,100);
-        if (x%2==0){
-            int t = this.coniuge.getTag();
-            if( t == 0){
-                Philanderer p = new Philanderer(0,0,points_for_kid);
-                this.children.add(p);
-            }else{
-                Faithful f = new Faithful(1,0,points_for_kid);
-                this.children.add(f);
+    public synchronized ArrayList<Individual> Give_birth(Individual partner, int cross_rate) throws InterruptedException {
+        //per la mutazione serve un valore molto basso ma tra 0 e 100 (crossrate)
+        ArrayList<Individual> kids = null;
+        if (partner.tag != 2 & partner.tag != 3) {
+            double points_for_kid = 0; // da decide come dare
+            // aggiungere il/i figlio/i nella popolazione, aumentare/diminuire gli opportuni valori
+            Random rand = new Random();
+            if (tag == 2) {
+                sleep(100);
             }
-        }else{
-            int t = this.tag;
-            if (tag == 2 ){
-                Coy c = new Coy(2,0,points_for_kid);
-                this.children.add(c);
-            }else{
-                Fast f = new Fast(3,0,points_for_kid);
-                this.children.add(f);
+            int n_bambini = rand.nextInt(0, 5);
+            Individual born;
+            for (int seggs = 0; seggs <= n_bambini; seggs++) { // questo crea figli un numero random di volte ma sempre meno di 5
+                int x = rand.nextInt(0, 100);
+
+                if (x < cross_rate) {
+                    int t = this.coniuge.getTag();
+                    if (t == 0) {
+                        born = new Philanderer(0, 0, points_for_kid);
+                        this.children.add(born);
+                        born.start();
+                    } else {
+                        born = new Faithful(1, 0, points_for_kid);
+                        this.children.add(born);
+                        born.start();
+                    }
+                } else {
+                    int t = this.tag;
+                    if (tag == 2) {
+                        born = new Coy(2, 0, points_for_kid);
+                        this.children.add(born);
+                        born.start();
+                    } else {
+                        born = new Fast(3, 0, points_for_kid);
+                        this.children.add(born);
+
+                    }
+                }
+                kids.add(born);
+                born.start();
             }
+
         }
+
+        return kids;
     }
 
+    @Override
+    public void run() {
+        super.run();
+    }
 
     private int get_success_courtship(int tag){
         Random r = new Random();
