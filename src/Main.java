@@ -12,6 +12,8 @@ public class Main {
              resources are calculated and stored
              ogni iterazione è una generazione (scelta migliore) o un anno (scelta pessima)
             */
+            p.haveseggs();
+            p.iterazione++;
         }
 
 

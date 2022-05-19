@@ -9,6 +9,7 @@ public abstract class Individual extends Thread{
         protected ArrayList<Individual> children;
         protected final int tag;
         protected double points;
+        protected volatile boolean taken = false;
 
         /*  TAG
         PHILANDERERS 0
@@ -49,12 +50,18 @@ public abstract class Individual extends Thread{
 
         public void marriage(Individual i){this.coniuge=i;}
 
-        public void get_points(double x){ this.points+=x;}  // da vede
-        public void run() {
+    public synchronized ArrayList<Individual> give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {;
+        return null;
+    }
+
+    public void get_points(double x){ this.points+=x;}  // da vede
+        public void run(Population pop) {
             try {
                 sleep(500); // maturità
                 // n_popolazione--;
                 //altre cose
+                //fuck
+                pop.getIndividuals().remove(this); // ded
 
             } catch (InterruptedException e) {
                 System.out.println("was sleeping...");
@@ -62,4 +69,6 @@ public abstract class Individual extends Thread{
         }
 
 
+    public void give_birth(Individual individual) {
+    }
 }

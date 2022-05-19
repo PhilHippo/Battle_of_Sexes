@@ -6,23 +6,22 @@ import java.util.Random;
 
 public class Population {
 
-    private int n;
+    private volatile int n;
     private boolean status;
-    private HashMap<String,Integer> n_individual;
-    private List<Individual> individuals;
+    private volatile HashMap<String,Integer> n_individual;
+    private volatile List<Individual> individuals;
     private double resources;
-    private int iterazione;
+    public int iterazione;
     protected Settings settings;
 
 
     //constructor with only n_of_people and resources, random n of each type of people
     public Population(int n,int r,Settings s){
-        //will divide in equal parts
-        Random radmon = new Random() ;
-        int phil = radmon.nextInt(0,n);
-        int faith = radmon.nextInt(0,n - phil);
-        int fast = radmon.nextInt(0,n - faith - phil);
-        int coy = n - fast - faith - phil;
+        int[] arr = randomList(4, n);
+        int phil = arr[0];
+        int faith = arr[1];
+        int fast = arr[2];
+        int coy = arr[3];
         this.settings=s;
         init(n,r,phil,faith,fast,coy);
         this.individuals=new ArrayList<Individual>();
@@ -30,15 +29,36 @@ public class Population {
         this.create_people(faith,phil,coy,fast,initial_point);
 
     }
+    static int[] randomList(int m, int target) {
+
+        // Create an array of size m where
+        // every element is initialized to 0
+        int arr[] = new int[m];
+        Random radmon = new Random();
+        // To make the sum of the final list as n
+        for (int i = 0; i < target; i++)
+        {
+            // Increment any random element
+            // from the array by 1
+            arr[(int)(radmon.nextDouble(0.0,1.0) * m)]++;
+        }
+        return arr;
+    }
 
     //constructor with specific number of type of people
     public Population(int n,int r,int f,int p,int c,int s){
         init(n,r,f,p,c,s);
-        this.individuals=new ArrayList<Individual>();
+        this.individuals= new ArrayList<Individual>();
         double initial_point=settings.initial_points;
-
-
-
+    }
+    public void haveseggs() {
+        Random radmon = new Random();
+        for (int i = 0; i < individuals.size()/2; i++) {
+            individuals.get(i).give_birth(individuals.get(radmon.nextInt(individuals.size()/2, individuals.size())));
+        }
+        for (int i = individuals.size()/2; i < individuals.size(); i++) {
+            individuals.get(i).give_birth(individuals.get(radmon.nextInt(0, individuals.size()/2)));
+        }
     }
 
     private void init(int n,int r,int f,int p, int c,int s) {
@@ -83,7 +103,9 @@ public class Population {
 
 
     public HashMap get_n_individual(){ return n_individual;}
-
+    public List<Individual> getIndividuals() {
+        return individuals;
+    }
 }
 
 
