@@ -8,12 +8,14 @@ public class Main {
         System.out.println(p.get_n_individual());
         int a = 1;
         while (a > 0 ) {/*while there isn't stability or resources aren't finished
-             p.haveseggs;  method in population that tells every random individual to try to copulate
              resources are calculated and stored
              ogni iterazione è una generazione (scelta migliore) o un anno (scelta pessima)
             */
-            p.haveseggs();
+            a--;
+            p.haveseggs(); //method in population that tells every random individual to try to copulate
             p.iterazione++;
+            System.out.println(p.get_n_individual());
+
         }
 
 
