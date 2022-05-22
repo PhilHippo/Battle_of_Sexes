@@ -1,24 +1,20 @@
 import java.util.ArrayList;
 
 public class Male extends Individual{
-
-    private boolean status;
-    private int age;
-    private double death_rate;
-    private Individual coniuge;
-    private ArrayList<Individual> children;
-    private int tag;
-    private int points;
-
-    public Male(int tag,int age,int points){
+    public Male(int tag,int age,double points){
         super(tag,age,points);
     }
-
-    //TO DO
-    public boolean courtship(){
-        return true;
+    public void segs () {}
+    @Override
+    public void run() {
+        super.run();
+    } //non so se mettere run solo a indivduo o anche ai 4 tipi
+    public synchronized ArrayList<Individual> give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {
+        if (partner.taken) {
+            wait();
+        }
+        return partner.give_birth(this , cross_rate, pop);
     }
-
 
 
 }
