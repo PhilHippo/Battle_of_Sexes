@@ -3,9 +3,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-
 public class Population {
-
     private volatile int n;
     private boolean status;
     private volatile HashMap<String,Integer> n_individual;
@@ -13,7 +11,6 @@ public class Population {
     private double resources;
     public int iterazione;
     protected Settings settings;
-
 
     //constructor with only n_of_people and resources, random n of each type of people
     public Population(int n,int r,Settings s){
@@ -24,8 +21,8 @@ public class Population {
         int coy = arr[3];
         this.settings=s;
         init(n,r,phil,faith,fast,coy);
-        this.individuals=new ArrayList<Individual>();
-        double initial_point=settings.initial_points;
+        this.individuals = new ArrayList<Individual>();
+        double initial_point = settings.initial_points;
         this.create_people(faith,phil,coy,fast,initial_point);
 
     }
@@ -100,9 +97,27 @@ public class Population {
             person.run();
         }
     }
-
-
-    public HashMap get_n_individual(){ return n_individual;}
+    
+    public HashMap getType_n(){ return n_individual;}
+    public int[] updatetype() {
+        int [] arr = new int[4];
+        for (Individual i: individuals) {
+            if (i.tag == 3) {arr[2]++;}
+            if (i.tag == 2) {arr[1]++;}
+            if (i.tag == 1) {arr[3]++;}
+            else {arr[0]++;}
+        }
+        return arr;
+    }
+    /*  TAG
+        PHILANDERERS 0
+        FAITHFUL 1
+        COY 2
+        FAST 3
+         */
+    public int getIndividuals_n() {
+        return individuals.size();
+    }
     public List<Individual> getIndividuals() {
         return individuals;
     }

@@ -1,21 +1,25 @@
+import java.util.Arrays;
+
 public class Main {
-
-    //ci piace scopare
-
-    public static void main(String[] args) {
+    //ci piace scopare ===> still no bitches tho
+        public static void main(String[] args) throws InterruptedException {
         Settings sett = new Settings(0,0,0,0,100,10);
         Population p = new Population(1001,1000,sett);
-        System.out.println(p.get_n_individual());
+
         int a = 1;
-        while (a > 0 ) {/*while there isn't stability or resources aren't finished
-             resources are calculated and stored
-             ogni iterazione è una generazione (scelta migliore) o un anno (scelta pessima)
+        while (a == 1 ) {/*while there isn't stability or resources aren't finished
+            resources are calculated and stored
+            ogni iterazione è una generazione (scelta migliore) o un anno (scelta pessima)
             */
             a--;
-            p.haveseggs(); //method in population that tells every random individual to try to copulate
+            //p.haveseggs(); //method in population that tells every random individual to try to copulate
             p.iterazione++;
-            System.out.println(p.get_n_individual());
-
+            System.out.println(p.getType_n() + " " + Arrays.toString(p.updatetype()) + " " + p.getIndividuals_n());
+            p.getIndividuals().add(new Philanderer(2,2,2));
+            Individual alfonso = new Philanderer(2,2,2);
+            Individual puttana = new Fast(2,2,2);
+            alfonso.give_birth(puttana, 3, p);
+            System.out.println(p.getType_n()  + " " + Arrays.toString(p.updatetype()) + " " + p.getIndividuals_n());
         }
 
 
