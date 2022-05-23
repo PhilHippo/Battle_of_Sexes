@@ -1,6 +1,5 @@
 public abstract class Individual extends Thread{
         protected int tag;
-        protected Individual coniuge;
         protected double points;
         protected volatile boolean taken = false;
 
@@ -14,7 +13,7 @@ public abstract class Individual extends Thread{
         public Individual(int tag, double points, Population p){
             this.points=points;
             p.getIndividuals().add(this);
-            p.n_individual[tag]=p.n_individual[tag]+1;
+            p.n_individual[tag]++;
             this.tag = tag;
         }
     public synchronized void give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {;

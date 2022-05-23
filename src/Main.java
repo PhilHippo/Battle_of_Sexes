@@ -31,7 +31,7 @@ public class Main  {
                 trend_population.add(p.getType_n());
                 X_time.add(counter);
 
-
+//ao
                 counter++;
 
             }
