@@ -9,7 +9,7 @@ import java.util.List;
 public class Main  {
     //ci piace scopare ===> still no bitches tho
         public static void main(String[] args) throws InterruptedException, IOException {
-            //dasdasdas commento a caso
+
             Settings sett = new Settings(0,0,0,0,100,10);
             Population p = new Population(1001,1000,sett);
             ArrayList<int[]> trend_population = new ArrayList<>();
