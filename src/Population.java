@@ -23,16 +23,11 @@ public class Population {
     }
     //constructor with only n_of_people and r of resources, random n of each type of people
     public Population(int n,int r,Settings s){
-        int[] arr = randomList(4, n);
-        int phil = arr[0];
-        int faith = arr[1];
-        int coy = arr[2];
-        int fast = arr[3];
-        this.n_individual = new int[4];
-        n_individual[0]= phil;
-        n_individual[1]= faith;
-        n_individual[2]= coy;
-        n_individual[3]= fast;
+        n_individual = randomList(4, n);
+        int phil = n_individual[0];
+        int faith = n_individual[1];
+        int coy = n_individual[2];
+        int fast = n_individual[3];
         this.settings=s;
         this.n = n;
         this.status = true;
