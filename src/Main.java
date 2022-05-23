@@ -15,10 +15,10 @@ public class Main {
             //p.haveseggs(); //method in population that tells every random individual to try to copulate
             p.iterazione++;
             System.out.println(p.getType_n() + " " + Arrays.toString(p.updatetype()) + " " + p.getIndividuals_n());
-            //new Philanderer(2,2,2, p);
-            //Individual alfonso = new Philanderer(2,2,2);
-            //Individual puttana = new Fast(2,2,2);
-            //alfonso.give_birth(puttana, 3, p);
+
+            Individual alfonso = new Philanderer(2,p);
+            Individual puttana = new Fast(2,p);
+            alfonso.give_birth(puttana, 3, p);
             System.out.println(p.getType_n()  + " " + Arrays.toString(p.updatetype()) + " " + p.getIndividuals_n());
         }
 

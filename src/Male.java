@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 
 public class Male extends Individual{
-    public Male(int tag,int age,double points,Population p){
-        super(tag,age,points,p);
+
+    public Male(double points, Population p, int tag){
+        super(tag, points, p);
     }
     @Override
 

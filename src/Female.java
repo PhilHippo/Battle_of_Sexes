@@ -2,18 +2,15 @@ import java.util.ArrayList;
 import java.util.Random;
 public class Female extends Individual{
 
-
     private int success_rate_court;
+    public Female(int tag, double points, Population p) {
+        super(tag, points, p);
+    }
     /*      PHILANDERERS=0
             FAITHFUL=1
             COY=2
-            FAST=3
-             */
-    public Female(int tag,int age,double points, Population p) {
-        super(tag,age,points,p);
-        if (tag == 2)  {this.success_rate_court = 10;} //costo della corteggiamentazione
-        else {this.success_rate_court = 0;}
-    }
+            FAST=3 */
+
     public synchronized ArrayList<Individual> give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {
         //per la mutazione serve un valore molto basso ma tra 0 e 100 (crossrate)
         ArrayList<Individual> kids = null;
@@ -28,28 +25,23 @@ public class Female extends Individual{
             }
             int n_bambini = rand.nextInt(0, 5);
             Individual born;
-            for (int seggs = 0; seggs <= n_bambini; seggs++) { // questo crea figli un numero random di volte ma sempre meno di 5
+            for (int seggs = 1; seggs <= n_bambini; seggs++) { // questo crea figli un numero random di volte ma sempre meno di 5
                 int x = rand.nextInt(0, 100);
                 if (x < cross_rate) {
-                    int t = this.coniuge.getTag();
-                    if (t == 0) {
-                        born = new Philanderer(0, 0, points_for_kid,pop);
-                        this.children.add(born);
+                    if (partner.tag == 0) {
+                        born = new Philanderer(points_for_kid,pop);
                         born.start();
                     } else {
-                        born = new Faithful(1, 0, points_for_kid,pop);
-                        this.children.add(born);
+                        born = new Faithful(points_for_kid,pop);
                         born.start();
                     }
                 } else {
                     if (tag == 2) {
-                        born = new Coy(2, 0, points_for_kid,pop);
-                        this.children.add(born);
+                        born = new Coy( points_for_kid,pop);
                         born.start();
                     } else {
-                        born = new Fast(3, 0, points_for_kid,pop);
-                        this.children.add(born);
-
+                        born = new Fast(points_for_kid,pop);
+                        born.start();
                     }
                 }
                 kids.add(born);
