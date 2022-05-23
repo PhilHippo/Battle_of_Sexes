@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Random;
 public class Female extends Individual{
-// coommento stupido
 
     public Female(int tag, double points, Population p) {
         super(tag, points, p);
