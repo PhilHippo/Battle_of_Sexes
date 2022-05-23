@@ -74,26 +74,21 @@ public class Population {
 
     }
     private void create_people(int f,int p,int c,int s,double initial_point){
-        // for loop più efficiente
         for (int i = 0; i <= f; i++) {
             Faithful person = new Faithful(1,18,initial_point,this);
-            individuals.add(person);
             person.run();
         }
         for (int i = 0; i <= p; i++) {
             Philanderer person = new Philanderer(0,18,initial_point,this);
-            individuals.add(person);
             person.run();
         }
         for (int i = 0; i <= c; i++) {
             Coy person = new Coy(2,18,initial_point,this);
-            individuals.add(person);
             person.run();
 
         }
         for (int i = 0; i <= s; i++) {
             Fast person = new Fast(3,18,initial_point,this);
-            individuals.add(person);
             person.run();
         }
     }
@@ -105,7 +100,7 @@ public class Population {
             if (i.tag == 3) {arr[2]++;}
             if (i.tag == 2) {arr[1]++;}
             if (i.tag == 1) {arr[3]++;}
-            else {arr[0]++;}
+            if (i.tag == 0) {arr[0]++;}
         }
         return arr;
     }
