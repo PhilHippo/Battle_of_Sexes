@@ -16,19 +16,23 @@ public class Main  {
             ArrayList<Integer> X_time = new ArrayList<>();
             int counter = 0;
             System.out.println(p.getIndividuals_n());
-            while (counter < 100000) {
-        //        while there isn't stability or resources aren't finished
-        //            resources are calculated and stored
-        //            ogni iterazione è una generazione (scelta migliore) o un anno (scelta pessima)
+            Philanderer armando = new Philanderer(2,p);
+            Faithful astolfo = new Faithful(2,p);
+            Fast giulia = new Fast(2,p);
 
-
-                p.mating(); //method in population that tells every random individual to try to copulate
+            while (counter < 100) {
+        /*        while there isn't stability or resources aren't finished
+                  resources are calculated and stored
+                  ogni iterazione è una generazione (scelta migliore) o un anno (scelta pessima)
+                        */
+                armando.give_birth(astolfo,5,p);
+                //p.mating(); //method in population that tells every random individual to try to copulate
                 p.iterazione++;
                 trend_population.add(p.getType_n());
                 X_time.add(counter);
 
 
-              counter++;
+                counter++;
 
             }
 
@@ -53,10 +57,10 @@ public class Main  {
             new SwingWrapper(chart).displayChart();
 
         // Save it
-            BitmapEncoder.saveBitmap(chart, "./Sample_Chart", BitmapEncoder.BitmapFormat.PNG);
+            //BitmapEncoder.saveBitmap(chart, "./Sample_Chart", BitmapEncoder.BitmapFormat.PNG);
 
         // or save it in high-res
-            BitmapEncoder.saveBitmapWithDPI(chart, "./Sample_Chart_300_DPI", BitmapEncoder.BitmapFormat.PNG, 300);
+            //BitmapEncoder.saveBitmapWithDPI(chart, "./Sample_Chart_300_DPI", BitmapEncoder.BitmapFormat.PNG, 300);
 
 
     }

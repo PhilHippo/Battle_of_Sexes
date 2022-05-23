@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Random;
-
 public abstract class Individual extends Thread{
         protected int tag;
         protected Individual coniuge;
@@ -20,8 +17,8 @@ public abstract class Individual extends Thread{
             p.n_individual[tag]=p.n_individual[tag]+1;
             this.tag = tag;
         }
-    public synchronized ArrayList<Individual> give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {;
-        return null;
+    public synchronized void give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {;
+        return;
     }
 
         public void run(Population pop) {
@@ -36,7 +33,6 @@ public abstract class Individual extends Thread{
                 System.out.println("was sleeping...");
             }
         }
-
 
     public void give_birth(Individual individual) {
     }

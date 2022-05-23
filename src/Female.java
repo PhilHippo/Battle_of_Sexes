@@ -8,7 +8,7 @@ public class Female extends Individual{
     }
 
 
-    public synchronized ArrayList<Individual> give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {
+    public synchronized void give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {
         //per la mutazione serve un valore molto basso ma tra 0 e 100 (crossrate)
         ArrayList<Individual> kids = null;
 
@@ -26,28 +26,21 @@ public class Female extends Individual{
                 int x = rand.nextInt(0, 100);
                 if (x < cross_rate) {
                     if (partner.tag == 0) {
-                        new Philanderer(points_for_kid,pop);
-                        //born.start();
+                        new Philanderer(points_for_kid,pop).start();
                     } else {
-                        new Faithful(points_for_kid,pop);
-                        //born.start();
+                        new Faithful(points_for_kid,pop).start();
                     }
                 } else {
                     if (tag == 2) {
-                        new Coy( points_for_kid,pop);
-                        //born.start();
+                        new Coy( points_for_kid,pop).start();
                     } else {
-                        new Fast(points_for_kid,pop);
-                        //born.start();
+                        new Fast(points_for_kid,pop).start();
                     }
                 }
-                //kids.add(born);
-
             }
 
         }
         taken = false;
-        return kids;
     }
 
 

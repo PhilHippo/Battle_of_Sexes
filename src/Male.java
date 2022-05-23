@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Male extends Individual{
 
     public Male(double points, Population p, int tag){
@@ -7,11 +5,12 @@ public class Male extends Individual{
     }
     @Override
 
-    public synchronized ArrayList<Individual> give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {
+    public synchronized void give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {
         if (partner.taken) {
             wait();
         }
-        return partner.give_birth(this , cross_rate, pop);
+        partner.give_birth(this , cross_rate, pop);
+        return ;
     }
 
 
