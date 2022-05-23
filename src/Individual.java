@@ -32,24 +32,7 @@ public abstract class Individual extends Thread{
             p.getIndividuals().add(this);
         }
 
-        public void die(){ this.status=false;  }
-
-        // da decide quanto toglie
-        public void aging(int x){ // l'età non ci serve
-            this.age+=1;
-            this.points-=x;
-            if ( points <= 0){
-                this.die();
-            }
-            //TO DO
-            //change something about deathrate
-        }
-
-        public boolean getStatus(){ return this.status;}
-
         public int getTag(){return this.tag;}
-
-        public void marriage(Individual i){this.coniuge=i;}
 
     public synchronized ArrayList<Individual> give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {;
         return null;

@@ -5,9 +5,7 @@ public class Male extends Individual{
         super(tag,age,points,p);
     }
     @Override
-    public void run() {
-        super.run();
-    }
+
     public synchronized ArrayList<Individual> give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {
         if (partner.taken) {
             wait();

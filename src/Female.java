@@ -13,7 +13,6 @@ public class Female extends Individual{
         super(tag,age,points,p);
         if (tag == 2)  {this.success_rate_court = 10;} //costo della corteggiamentazione
         else {this.success_rate_court = 0;}
-        p.getIndividuals().add(this);
     }
     public synchronized ArrayList<Individual> give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {
         //per la mutazione serve un valore molto basso ma tra 0 e 100 (crossrate)
@@ -62,10 +61,6 @@ public class Female extends Individual{
         return kids;
     }
 
-    @Override
-    public void run() {
-        super.run();
-    }//non so se mettere run solo a individuo o anche ai 4 tipi
 
     private int get_success_courtship(int tag){ //inutile : basta mettere tempi giusti nei vari casi diversi
         Random r = new Random();
