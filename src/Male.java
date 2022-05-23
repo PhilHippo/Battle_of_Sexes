@@ -10,7 +10,7 @@ public class Male extends Individual{
             wait();
         }
         partner.give_birth(this , cross_rate, pop);
-        return ;
+
     }
 
 

@@ -20,8 +20,8 @@ public class Main  {
             Faithful astolfo = new Faithful(2,p);
             Fast giulia = new Fast(2,p);
 
-            while (counter < 500) {
-        /*        while there isn't stability or resources aren't finished
+            while (counter < 300) {
+        /*   while there isn't stability or resources aren't finished
                   resources are calculated and stored
                   ogni iterazione è una generazione (scelta migliore) o un anno (scelta pessima)
                         */

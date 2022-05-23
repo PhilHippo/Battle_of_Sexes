@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -62,6 +63,11 @@ public class Population {
         this.iterazione = 0;
         this.status = true;
         this.resources = r;
+        this.n_individual = new int[4];
+        phil = n_individual[0];
+        faith = n_individual[1];
+        coy = n_individual[2];
+        fast = n_individual[3];
     }
 
 
@@ -109,7 +115,9 @@ public class Population {
         int size = trends.size();
         int[] arr = new int[size];
         for (int i = 0; i < size ; i++){
-            arr[i] = trends.get(i)[index];
+            int[] a = trends.get(i);
+            System.out.println(Arrays.toString(a));
+            arr[i] = a[index];
         }
 
         return arr;

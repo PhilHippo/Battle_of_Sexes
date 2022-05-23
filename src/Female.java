@@ -44,14 +44,6 @@ public class Female extends Individual{
     }
 
 
-    private int get_success_courtship(int tag){ //inutile : basta mettere tempi giusti nei vari casi diversi
-        Random r = new Random();
-        if(this.tag == 2){
-
-        }
-        return 0;
-    }
-
 
 
 }
