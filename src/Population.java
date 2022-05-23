@@ -4,29 +4,39 @@ import java.util.List;
 import java.util.Random;
 
 public class Population {
+
     private volatile int n;
     private boolean status;
-    private volatile HashMap<String,Integer> n_individual;
+    protected volatile int[] n_individual;
     private volatile List<Individual> individuals;
     private double resources;
     public int iterazione;
     protected Settings settings;
+    protected double initial_point;
+
+       /*  TAG
+        PHILANDERERS 0
+        FAITHFUL 1
+        COY 2
+        FAST 3
+         */
 
     //constructor with only n_of_people and resources, random n of each type of people
     public Population(int n,int r,Settings s){
         int[] arr = randomList(4, n);
         int phil = arr[0];
         int faith = arr[1];
-        int fast = arr[2];
-        int coy = arr[3];
+        int fast = arr[3];
+        int coy = arr[2];
+        this.n_individual = arr;
         this.settings=s;
-        init(n,r,phil,faith,fast,coy);
+        init(n,r);
         this.individuals = new ArrayList<Individual>();
-        double initial_point = settings.initial_points;
-        this.create_people(faith,phil,coy,fast,initial_point);
+        this.initial_point = settings.initial_points;
+        this.create_people(faith,phil,coy,fast);
 
     }
-    static int[] randomList(int m, int target) {
+    public static int[] randomList(int m, int target) {
 
         // Create an array of size m where
         // every element is initialized to 0
@@ -43,12 +53,19 @@ public class Population {
     }
 
     //constructor with specific number of type of people
-    public Population(int n,int r,int f,int p,int c,int s){
-        init(n,r,f,p,c,s);
+    public Population(int n,int r){
+        int[] arr = new int[4];
+        int phil = arr[0];
+        int faith = arr[1];
+        int fast = arr[3];
+        int coy = arr[2];
+        init(n,r);
         this.individuals= new ArrayList<Individual>();
-        double initial_point=settings.initial_points;
+        this.initial_point=settings.initial_points;
     }
-    public void haveseggs() {
+
+
+    public void mating() {
         Random radmon = new Random();
         for (int i = 0; i < individuals.size()/2; i++) {
             individuals.get(i).give_birth(individuals.get(radmon.nextInt(individuals.size()/2, individuals.size())));
@@ -58,22 +75,15 @@ public class Population {
         }
     }
 
-    private void init(int n,int r,int f,int p, int c,int s) {
+    private void init(int n,int r) {
         this.n = n;
         this.iterazione = 0;
         this.status = true;
         this.resources = r;
-        this.n_individual = new HashMap<>() {
-            {
-                put("P", p);
-                put("C", c);
-                put("F", f);
-                put("S", s);
-            }
-        };
-
     }
-    private void create_people(int f,int p,int c,int s,double initial_point){
+
+
+    private void create_people(int f,int p,int c,int s){
         for (int i = 0; i < f; i++) {
             Faithful person = new Faithful(initial_point,this);
             person.run();
@@ -93,7 +103,9 @@ public class Population {
         }
     }
     
-    public HashMap getType_n(){ return n_individual;}
+    public int[] getType_n(){ return n_individual;}
+
+
     public int[] updatetype() {
         int [] arr = new int[4];
         for (Individual i: individuals) {
@@ -110,9 +122,26 @@ public class Population {
         COY 2
         FAST 3
          */
+
+    public static int[] get_values(int index,ArrayList<int[]> trends){
+        int size = trends.size();
+        int[] arr = new int[size];
+        for (int i = 0; i < size ; i++){
+            arr[i] = trends.get(i)[index];
+        }
+
+        return arr;
+    }
+
+
+
+
     public int getIndividuals_n() {
         return individuals.size();
     }
+
+    public boolean getStatus(){ return this.status;}
+
     public List<Individual> getIndividuals() {
         return individuals;
     }

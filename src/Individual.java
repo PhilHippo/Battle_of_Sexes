@@ -17,6 +17,7 @@ public abstract class Individual extends Thread{
         public Individual(int tag, double points, Population p){
             this.points=points;
             p.getIndividuals().add(this);
+            p.n_individual[tag]=p.n_individual[tag]+1;
             this.tag = tag;
         }
     public synchronized ArrayList<Individual> give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {;
