@@ -14,12 +14,12 @@ public class Main {
             a--;
             //p.haveseggs(); //method in population that tells every random individual to try to copulate
             p.iterazione++;
-            System.out.println(p.getType_n() + " " + Arrays.toString(p.updatetype()) + " " + p.getIndividuals_n());
+            System.out.println(p.getType_n() + " (non in ordine) " + Arrays.toString(p.updatetype()) + " " + p.getIndividuals_n());
 
             Individual alfonso = new Philanderer(2,p);
             Individual puttana = new Fast(2,p);
             alfonso.give_birth(puttana, 3, p);
-            System.out.println(p.getType_n()  + " " + Arrays.toString(p.updatetype()) + " " + p.getIndividuals_n());
+            System.out.println(p.getType_n()  + " (non in ordine) " + Arrays.toString(p.updatetype()) + " " + p.getIndividuals_n());
         }
 
 

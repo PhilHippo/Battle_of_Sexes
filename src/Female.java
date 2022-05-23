@@ -6,10 +6,7 @@ public class Female extends Individual{
     public Female(int tag, double points, Population p) {
         super(tag, points, p);
     }
-    /*      PHILANDERERS=0
-            FAITHFUL=1
-            COY=2
-            FAST=3 */
+
 
     public synchronized ArrayList<Individual> give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {
         //per la mutazione serve un valore molto basso ma tra 0 e 100 (crossrate)
@@ -23,29 +20,29 @@ public class Female extends Individual{
             if (tag == 2) {
                 sleep(200);
             }
-            int n_bambini = rand.nextInt(0, 5);
+            int n_bambini = rand.nextInt(1, 4);
             Individual born;
             for (int seggs = 1; seggs <= n_bambini; seggs++) { // questo crea figli un numero random di volte ma sempre meno di 5
                 int x = rand.nextInt(0, 100);
                 if (x < cross_rate) {
                     if (partner.tag == 0) {
-                        born = new Philanderer(points_for_kid,pop);
-                        born.start();
+                        new Philanderer(points_for_kid,pop);
+                        //born.start();
                     } else {
-                        born = new Faithful(points_for_kid,pop);
-                        born.start();
+                        new Faithful(points_for_kid,pop);
+                        //born.start();
                     }
                 } else {
                     if (tag == 2) {
-                        born = new Coy( points_for_kid,pop);
-                        born.start();
+                        new Coy( points_for_kid,pop);
+                        //born.start();
                     } else {
-                        born = new Fast(points_for_kid,pop);
-                        born.start();
+                        new Fast(points_for_kid,pop);
+                        //born.start();
                     }
                 }
-                kids.add(born);
-                born.start();
+                //kids.add(born);
+
             }
 
         }

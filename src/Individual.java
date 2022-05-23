@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Individual extends Thread{
-        int tag;
+        protected int tag;
         protected Individual coniuge;
         protected double points;
         protected volatile boolean taken = false;
