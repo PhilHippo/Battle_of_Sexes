@@ -28,6 +28,11 @@ public class Population {
         int faith = arr[1];
         int coy = arr[2];
         int fast = arr[3];
+        this.n_individual = new int[4];
+        n_individual[0]= phil;
+        n_individual[1]= faith;
+        n_individual[2]= coy;
+        n_individual[3]= fast;
         this.settings=s;
         this.n = n;
         this.status = true;
@@ -36,6 +41,8 @@ public class Population {
         this.initial_point = settings.initial_points;
         this.create_people(faith,phil,coy,fast, initial_point);
     }
+
+
     private void create_people(int phil,int faith,int coy,int fast,double initial_point){
         for (int i = 0; i < phil; i++) {
             Philanderer person = new Philanderer(initial_point,this);
