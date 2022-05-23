@@ -9,10 +9,11 @@ public class Female extends Individual{
             COY=2
             FAST=3
              */
-    public Female(int tag,int age,double points) {
-        super(tag,age,points);
+    public Female(int tag,int age,double points, Population p) {
+        super(tag,age,points,p);
         if (tag == 2)  {this.success_rate_court = 10;} //costo della corteggiamentazione
         else {this.success_rate_court = 0;}
+        p.getIndividuals().add(this);
     }
     public synchronized ArrayList<Individual> give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {
         //per la mutazione serve un valore molto basso ma tra 0 e 100 (crossrate)
@@ -33,21 +34,21 @@ public class Female extends Individual{
                 if (x < cross_rate) {
                     int t = this.coniuge.getTag();
                     if (t == 0) {
-                        born = new Philanderer(0, 0, points_for_kid);
+                        born = new Philanderer(0, 0, points_for_kid,pop);
                         this.children.add(born);
                         born.start();
                     } else {
-                        born = new Faithful(1, 0, points_for_kid);
+                        born = new Faithful(1, 0, points_for_kid,pop);
                         this.children.add(born);
                         born.start();
                     }
                 } else {
                     if (tag == 2) {
-                        born = new Coy(2, 0, points_for_kid);
+                        born = new Coy(2, 0, points_for_kid,pop);
                         this.children.add(born);
                         born.start();
                     } else {
-                        born = new Fast(3, 0, points_for_kid);
+                        born = new Fast(3, 0, points_for_kid,pop);
                         this.children.add(born);
 
                     }
@@ -64,7 +65,7 @@ public class Female extends Individual{
     @Override
     public void run() {
         super.run();
-    }//non so se mettere run solo a indivduo o anche ai 4 tipi
+    }//non so se mettere run solo a individuo o anche ai 4 tipi
 
     private int get_success_courtship(int tag){ //inutile : basta mettere tempi giusti nei vari casi diversi
         Random r = new Random();

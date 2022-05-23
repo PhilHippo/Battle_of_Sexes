@@ -12,13 +12,13 @@ public class Main {
             ogni iterazione è una generazione (scelta migliore) o un anno (scelta pessima)
             */
             a--;
-            //p.haveseggs(); //method in population that tells every random individual to try to copulate
+            p.haveseggs(); //method in population that tells every random individual to try to copulate
             p.iterazione++;
             System.out.println(p.getType_n() + " " + Arrays.toString(p.updatetype()) + " " + p.getIndividuals_n());
-            p.getIndividuals().add(new Philanderer(2,2,2));
-            Individual alfonso = new Philanderer(2,2,2);
-            Individual puttana = new Fast(2,2,2);
-            alfonso.give_birth(puttana, 3, p);
+            new Philanderer(2,2,2, p);
+            //Individual alfonso = new Philanderer(2,2,2);
+            //Individual puttana = new Fast(2,2,2);
+            //alfonso.give_birth(puttana, 3, p);
             System.out.println(p.getType_n()  + " " + Arrays.toString(p.updatetype()) + " " + p.getIndividuals_n());
         }
 

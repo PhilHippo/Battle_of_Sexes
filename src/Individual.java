@@ -18,7 +18,7 @@ public abstract class Individual extends Thread{
         FAST 3
          */
 
-        public Individual(int tag,int age,double points){
+        public Individual(int tag,int age,double points, Population p){
             this.status=true;
             if (age < 0 || age > 100) {
                 throw new IllegalArgumentException();
@@ -29,6 +29,7 @@ public abstract class Individual extends Thread{
             this.children=new ArrayList<>();
             this.tag=tag;
             this.points=points;
+            p.getIndividuals().add(this);
         }
 
         public void die(){ this.status=false;  }
