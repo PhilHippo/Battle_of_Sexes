@@ -18,6 +18,7 @@ public class Female extends Individual{
         if (partner.tag != 2 & partner.tag != 3) {
             taken = true;
             double points_for_kid = calculate_points(partner); // da decide come dare
+
             // aggiungere il/i figlio/i nella popolazione, aumentare/diminuire gli opportuni valori
             Random rand = new Random();
             if (tag == 2) {
@@ -59,8 +60,6 @@ public class Female extends Individual{
     public double calculate_points(Individual dad){
         double Tot_cost = p.settings.cost_child + p.settings.cost_birth;
         double resources = (p.settings.resources_available)/p.getIndividuals_n();
-
-
         //IF SHE IS A COY
         if (this.tag == 2){
             double points_parents = this.points + dad.points;
