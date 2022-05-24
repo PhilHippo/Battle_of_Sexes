@@ -2,7 +2,7 @@ public abstract class Individual extends Thread{
         protected int tag;
         protected double points;
         protected volatile boolean taken = false;
-        protected Population p;
+        protected volatile Population p;
 
         /*  TAG
         PHILANDERERS 0
@@ -21,13 +21,13 @@ public abstract class Individual extends Thread{
 
     public synchronized void give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {}
 
-        public void run(Population pop) {
+        public void run() {
             try {
-                sleep(50);
+                sleep(200);
                 if(this.points<0){
-                pop.n_individual[this.tag]--;
-                pop.getIndividuals().remove(this);
-                this.stop();}
+                p.n_individual[this.tag]--;
+                p.getIndividuals().remove(this);
+                }
 
             } catch (InterruptedException e) {
                 System.out.println("was sleeping...");

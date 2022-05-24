@@ -28,7 +28,7 @@ public class Female extends Individual{
                 boolean gender_reveal = rand.nextBoolean();
                 int mutation = rand.nextInt(0, 101);
                 if (mutation <= cross_rate){
-                    this.mutation(partner,pop);
+                    this.mutation(partner,pop,points_for_kid);
                 }
                 else {
                     if (gender_reveal) {
@@ -52,7 +52,10 @@ public class Female extends Individual{
 
 
 
-    public synchronized void mutation(Individual partner, Population p) throws InterruptedException{}
+    public synchronized void mutation(Individual partner, Population p, double points_for_kids) throws InterruptedException{
+
+    }
+
 
 
 

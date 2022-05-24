@@ -10,7 +10,7 @@ public class Fast extends Female{
         Random x = new Random();
         // x%2 == 0 Faithful
         // x%2 == 1 Coy
-        if(x.nextInt(1,10)%2==0){
+        if(x.nextBoolean()){
             new Faithful(points_for_kids,p).start();
         }else{
             new Coy(points_for_kids,p).start();
