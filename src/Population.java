@@ -52,10 +52,6 @@ public class Population {
         }
     }
 
-    public static synchronized void increment (int type) {
-        n_individuals[type]++;
-    }
-
     /*  public int[] updatetype() {
         int [] arr = new int[4];
         for (Individual i: individuals) {
