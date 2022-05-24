@@ -5,12 +5,12 @@ import java.util.Random;
 public class Population {
     private volatile int n; // # completo
     private boolean status; // attivo/disattivo
-    protected volatile int[] n_individual = new int[4]; // # per tipo
+    public static volatile int[] n_individuals = new int[4];
     private volatile List<Individual> individuals; // lista di tutte le persone
     private double resources; // pizza pasta maccaroni
     public int iterazione = 0; // # generazione
     protected Settings settings; // impostazioni
-    protected double initial_point; //
+    protected double initial_point;
 
     public void mating() throws InterruptedException {
     Random radmon = new Random();
@@ -22,14 +22,8 @@ public class Population {
         }*/
     }
     //constructor with only n_of_people and r of resources, random n of each type of people
-    public Population(int n,Settings s){
-        n_individual = randomList(4, n);
-        int phil = n_individual[0];
-        int faith = n_individual[1];
-        int coy = n_individual[2];
-        int fast = n_individual[3];
+    public Population(Settings s, int phil, int faith, int coy, int fast){
         this.settings=s;
-        this.n = n;
         this.status = true;
         this.resources = s.resources_available;
         this.individuals = new ArrayList<Individual>();
@@ -57,10 +51,12 @@ public class Population {
             person.start();
         }
     }
-    
-    public int[] getType_n(){ return n_individual;}
 
-    public int[] updatetype() {
+    public static synchronized void increment (int type) {
+        n_individuals[type]++;
+    }
+
+    /*  public int[] updatetype() {
         int [] arr = new int[4];
         for (Individual i: individuals) {
             if (i.tag == 3) {arr[3]++;}
@@ -69,7 +65,8 @@ public class Population {
             if (i.tag == 0) {arr[0]++;}
         }
         return arr;
-    }
+    }*/
+
     public static int[] get_values(int index,ArrayList<int[]> trends){
         int size = trends.size();
         int[] arr = new int[size];
