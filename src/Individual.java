@@ -25,14 +25,11 @@ public abstract class Individual extends Thread{
                 sleep(500); // maturità
                 // n_popolazione--;
                 //altre cose
-                //fuck
+                pop.n_individual[this.tag]--;
                 pop.getIndividuals().remove(this); // ded
 
             } catch (InterruptedException e) {
                 System.out.println("was sleeping...");
             }
         }
-
-    public void give_birth(Individual individual) {
-    }
 }

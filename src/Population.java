@@ -5,21 +5,22 @@ import java.util.Random;
 public class Population {
     private volatile int n; // # completo
     private boolean status; // attivo/disattivo
-    protected volatile int[] n_individual; // # per tipo
+    protected volatile int[] n_individual = new int[4]; // # per tipo
     private volatile List<Individual> individuals; // lista di tutte le persone
     private double resources; // pizza pasta maccaroni
     public int iterazione = 0; // # generazione
     protected Settings settings; // impostazioni
     protected double initial_point; //
 
-    public void mating() {
+    public void mating() throws InterruptedException {
     Random radmon = new Random();
         for (int i = 0; i < individuals.size()/2; i++) {
-        individuals.get(i).give_birth(individuals.get(radmon.nextInt(individuals.size()/2, individuals.size())));
+            System.out.println(individuals.get(i));
+            individuals.get(i).give_birth(individuals.get(radmon.nextInt(individuals.size()/2, individuals.size())),3,this);
         }
-        for (int i = individuals.size()/2+1; i < individuals.size(); i++) {
-        individuals.get(i).give_birth(individuals.get(radmon.nextInt(0, individuals.size()/2)));
-        }
+        /*for (int i = individuals.size()/2+1; i < individuals.size(); i++) {
+            individuals.get(i).give_birth(individuals.get(radmon.nextInt(0, individuals.size()/2)),3,this);
+        }*/
     }
     //constructor with only n_of_people and r of resources, random n of each type of people
     public Population(int n,int r,Settings s){

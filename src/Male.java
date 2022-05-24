@@ -6,7 +6,7 @@ public class Male extends Individual{
 
     @Override
     public synchronized void give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {
-        if (partner.taken) {
+        while (partner.taken) {
             wait();
         }
         if (partner.tag == 0 || partner.tag == 1) return;
