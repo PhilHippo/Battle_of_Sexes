@@ -17,33 +17,32 @@ public class Female extends Individual{
 
         if (partner.tag != 2 & partner.tag != 3) {
             taken = true;
-            double points_for_kid = calculate_points(partner); // da decide come dare
-
-            // aggiungere il/i figlio/i nella popolazione, aumentare/diminuire gli opportuni valori
+            double points_for_kid = calculate_points(partner);
             Random rand = new Random();
             if (tag == 2) {
-                sleep(100); //corteggiamento
+                sleep(000); //corteggiamento
             }
-      int n_bambini = rand.nextInt(1, pop.settings.max_kids_possible);
+            int n_bambini = rand.nextInt(1, pop.settings.max_kids_possible);
 
-            for (int i = 1; i <= n_bambini; i++) { // questo crea figli un numero random di volte ma sempre meno di 5
-                int x = rand.nextInt(0, 101);
-
-                if (x <= cross_rate){
-                    this.mutation(partner,pop);
+            for (int i = 1; i <= n_bambini; i++) {
+                boolean gender_reveal = rand.nextBoolean();
+                int mutation = rand.nextInt(0, 101);
+                if (mutation <= cross_rate){
+                    this.mutation(partner,pop,points_for_kid);
                 }
-
-                if (x%2==0) {
-                    if (partner.tag == 0) {
-                        new Philanderer(points_for_kid,pop).start();
+                else {
+                    if (gender_reveal) {
+                        if (partner.tag == 0) {
+                            new Philanderer(points_for_kid,pop).start();
+                        } else {
+                            new Faithful(points_for_kid,pop).start();
+                        }
                     } else {
-                        new Faithful(points_for_kid,pop).start();
-                    }
-                } else {
-                    if (tag == 2) {
-                        new Coy( points_for_kid,pop).start();
-                    } else {
-                        new Fast(points_for_kid,pop).start();
+                        if (tag == 2) {
+                            new Coy( points_for_kid,pop).start();
+                        } else {
+                            new Fast(points_for_kid,pop).start();
+                        }
                     }
                 }
             }
@@ -53,13 +52,18 @@ public class Female extends Individual{
 
 
 
-    public synchronized void mutation(Individual partner, Population p) throws InterruptedException{}
+    public synchronized void mutation(Individual partner, Population p, double points_for_kids) throws InterruptedException{
+
+    }
+
 
 
 
     public double calculate_points(Individual dad){
         double Tot_cost = p.settings.cost_child + p.settings.cost_birth;
         double resources = (p.settings.resources_available)/p.getIndividuals_n();
+
+
         //IF SHE IS A COY
         if (this.tag == 2){
             double points_parents = this.points + dad.points;

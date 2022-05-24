@@ -40,7 +40,7 @@ public class Main  {
 
 
         // Create Chart
-            XYChart chart = new XYChartBuilder().width(1600).height(800).title(Main.class.getSimpleName()).xAxisTitle("Time").yAxisTitle("Number of people").build();
+            XYChart chart = new XYChartBuilder().width(1600).height(800).title(Main.class.getSimpleName()).xAxisTitle("Generations").yAxisTitle("Number of people").build();
             chart.addSeries("Philanderer", Time, Y_Phil);
             chart.addSeries("Faithful", Time, Y_Faith);
             chart.addSeries("Fast", Time, Y_Fast);
