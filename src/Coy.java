@@ -11,7 +11,7 @@ public class Coy  extends Female{
         Random x = new Random();
         // x%2 == 0 Philanderer
         // x%2 == 1 Fast
-        if(x.nextInt(1,10)%2==0){
+        if(x.nextInt(1,11)%2==0){
             new Philanderer(points_for_kids,p).start();
         }else{
             new Fast(points_for_kids,p).start();
