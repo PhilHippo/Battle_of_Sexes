@@ -3,14 +3,12 @@ import org.knowm.xchart.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 
 public class Main  {
     //ci piace scopare ===> still no bitches tho
         public static void main(String[] args) throws InterruptedException, IOException {
             Settings sett = new Settings(0,0,1000000,3,50);
-            Population p = new Population(10,sett);
+            Population p = new Population(sett,10,10,10,10);//manually setting initial population
             ArrayList<int[]> trend_population = new ArrayList<>();
             ArrayList<Integer> X_time = new ArrayList<>();
             int counter = 0;
@@ -24,8 +22,8 @@ public class Main  {
                 //giulia.give_birth(armando,5,p);
                 p.mating(); //method in population that tells every random individual to try to copulate
                 p.iterazione++;
-                System.out.println(Arrays.toString(p.updatetype()));
-                trend_population.add(p.getType_n().clone());
+                System.out.println(Arrays.toString(Population.n_individuals));
+                trend_population.add(Population.n_individuals.clone());
                 X_time.add(counter);
                 counter++;
 
@@ -49,7 +47,7 @@ public class Main  {
         // Show it
             new SwingWrapper(chart).displayChart();
         // Save it
-            //BitmapEncoder.saveBitmap(chart, "./Sample_Chart", BitmapEncoder.BitmapFormat.PNG);
+            BitmapEncoder.saveBitmap(chart, "./Sample_Chart", BitmapEncoder.BitmapFormat.PNG);
         // or save it in high-res
             //BitmapEncoder.saveBitmapWithDPI(chart, "./Sample_Chart_300_DPI", BitmapEncoder.BitmapFormat.PNG, 300);
 
