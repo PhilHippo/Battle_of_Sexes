@@ -17,17 +17,22 @@ public class Female extends Individual{
 
         if (partner.tag != 2 & partner.tag != 3) {
             taken = true;
-            double points_for_kid = 0; // da decide come dare
+            double points_for_kid = calculate_points(partner); // da decide come dare
             // aggiungere il/i figlio/i nella popolazione, aumentare/diminuire gli opportuni valori
             Random rand = new Random();
             if (tag == 2) {
-                sleep(1000); //corteggiamento
+                sleep(100); //corteggiamento
             }
-            int n_bambini = rand.nextInt(1, 4);
+      int n_bambini = rand.nextInt(1, pop.settings.max_kids_possible);
 
-            for (int seggs = 1; seggs <= n_bambini; seggs++) { // questo crea figli un numero random di volte ma sempre meno di 5
+            for (int i = 1; i <= n_bambini; i++) { // questo crea figli un numero random di volte ma sempre meno di 5
                 int x = rand.nextInt(0, 101);
-                if (x < cross_rate) {
+
+                if (x <= cross_rate){
+                    this.mutation(partner,pop);
+                }
+
+                if (x%2==0) {
                     if (partner.tag == 0) {
                         new Philanderer(points_for_kid,pop).start();
                     } else {
@@ -41,13 +46,44 @@ public class Female extends Individual{
                     }
                 }
             }
-
         }
         taken = false;
     }
 
 
 
+    public synchronized void mutation(Individual partner, Population p) throws InterruptedException{}
+
+
+
+    public double calculate_points(Individual dad){
+        double Tot_cost = p.settings.cost_child + p.settings.cost_birth;
+        double resources = (p.settings.resources_available)/p.getIndividuals_n();
+
+
+        //IF SHE IS A COY
+        if (this.tag == 2){
+            double points_parents = this.points + dad.points;
+            double effective_points = points_parents - Tot_cost + resources;
+            this.points -= Tot_cost/2;
+            dad.points -= Tot_cost/2;
+            // se il costo supera le loro possibilita economiche abortiscono, (YES IM PRO-CHOICE)
+            if (dad.points <= 0 || this.points <= 0){
+                this.points += Tot_cost/2-10;
+                dad.points += Tot_cost/2-10;
+                return 0;
+            }
+            return effective_points;
+        }
+        //IF SHE IS A FAST
+        double effective_points = this.points - Tot_cost +resources;
+        this.points -= Tot_cost;
+        if ( this.points <= 0){
+            this.points += Tot_cost-10;
+            return 0;
+        }
+        return effective_points;
+    }
 
 }
 

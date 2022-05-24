@@ -8,16 +8,14 @@ public class Settings {
     protected double cost_child;
     protected double resources_available;
     protected int max_kids_possible;
-    protected int max_year_individual;
     protected double initial_points;
 
-    public Settings(double cb,double cc, double ra, int mk,int myi,double ip){
-        this.cost_birth=cb;
-        this.cost_child=cc;
-        this.resources_available=ra;
-        this.max_kids_possible=mk;
-        this.max_year_individual=myi;
-        this.initial_points=ip;
+    public Settings(double cost_birth,double cost_child, double resources_available, int max_kids_possible,double initial_points){
+        this.cost_birth=cost_birth;
+        this.cost_child=cost_child;
+        this.resources_available=resources_available;
+        this.max_kids_possible=max_kids_possible;
+        this.initial_points=initial_points;
     }
 
 

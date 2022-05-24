@@ -15,7 +15,6 @@ public class Population {
     public void mating() throws InterruptedException {
     Random radmon = new Random();
         for (int i = 0; i < individuals.size()/2; i++) {
-            System.out.println(individuals.get(i));
             individuals.get(i).give_birth(individuals.get(radmon.nextInt(individuals.size()/2, individuals.size())),3,this);
         }
         /*for (int i = individuals.size()/2+1; i < individuals.size(); i++) {
@@ -23,7 +22,7 @@ public class Population {
         }*/
     }
     //constructor with only n_of_people and r of resources, random n of each type of people
-    public Population(int n,int r,Settings s){
+    public Population(int n,Settings s){
         n_individual = randomList(4, n);
         int phil = n_individual[0];
         int faith = n_individual[1];
@@ -32,7 +31,7 @@ public class Population {
         this.settings=s;
         this.n = n;
         this.status = true;
-        this.resources = r;
+        this.resources = s.resources_available;
         this.individuals = new ArrayList<Individual>();
         this.initial_point = settings.initial_points;
         this.create_people(faith,phil,coy,fast, initial_point);
