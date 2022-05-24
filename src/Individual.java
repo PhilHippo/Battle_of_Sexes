@@ -22,15 +22,9 @@ public abstract class Individual extends Thread{
     public synchronized void give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {}
 
         public void run() {
-            try {
-                sleep(200);
-                if(this.points<0){
-                p.n_individual[this.tag]--;
-                p.getIndividuals().remove(this);
-                }
-
-            } catch (InterruptedException e) {
-                System.out.println("was sleeping...");
+            if(this.points<0){
+            //p.n_individual[this.tag]--;
+            //p.getIndividuals().remove(this);
             }
         }
 }

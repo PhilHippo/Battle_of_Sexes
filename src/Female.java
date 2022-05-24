@@ -20,7 +20,7 @@ public class Female extends Individual{
             double points_for_kid = calculate_points(partner);
             Random rand = new Random();
             if (tag == 2) {
-                sleep(100); //corteggiamento
+                sleep(000); //corteggiamento
             }
             int n_bambini = rand.nextInt(1, pop.settings.max_kids_possible);
 
