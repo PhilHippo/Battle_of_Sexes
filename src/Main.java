@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class Main  {
     //ci piace scopare ===> still no bitches tho
         public static void main(String[] args) throws InterruptedException, IOException {
-            Settings sett = new Settings(0,0,1000000,3,50);
+            Settings sett = new Settings(15,20,3,120000,3,60);
             Population p = new Population(sett,10,10,10,10);//manually setting initial population
             ArrayList<int[]> trend_population = new ArrayList<>();
             ArrayList<Integer> X_time = new ArrayList<>();
@@ -28,7 +28,10 @@ public class Main  {
                 counter++;
 
             }
-            System.out.println(p.getIndividuals_n());
+            System.out.println("\n" + "Male population: " + p.getMale().size());
+            System.out.println("Female population: " + p.getFemale().size());
+            System.out.println("Total population: " + p.getIndividuals_n());
+
 
             int[] Y_Phil = Population.get_values(0,trend_population);
             int[] Y_Faith = Population.get_values(1,trend_population);
@@ -47,7 +50,7 @@ public class Main  {
         // Show it
             new SwingWrapper(chart).displayChart();
         // Save it
-            BitmapEncoder.saveBitmap(chart, "./Sample_Chart", BitmapEncoder.BitmapFormat.PNG);
+            //BitmapEncoder.saveBitmap(chart, "./Sample_Chart", BitmapEncoder.BitmapFormat.PNG);
         // or save it in high-res
             //BitmapEncoder.saveBitmapWithDPI(chart, "./Sample_Chart_300_DPI", BitmapEncoder.BitmapFormat.PNG, 300);
 

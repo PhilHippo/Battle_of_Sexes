@@ -17,15 +17,14 @@ public abstract class Individual extends Thread{
             this.p = p;
             p.getIndividuals().add(this);
 
+            if(tag == 0 || tag == 1){
+                p.getMale().add(this);
+            }else{
+                p.getFemale().add(this);
+            }
+
             synchronized (Population.n_individuals) {
-                int a = Population.n_individuals[tag] + 1;
-
-                try {  //this try catch seems useless but it's a must for the sync to work
-                    sleep(1);
-                } catch (InterruptedException ignored) {
-                }
-
-                Population.n_individuals[tag] = a;
+                Population.n_individuals[tag]++;
             }
         }
 

@@ -60,7 +60,7 @@ public class Female extends Individual{
 
 
     public double calculate_points(Individual dad){
-        double Tot_cost = p.settings.cost_child + p.settings.cost_birth;
+        double Tot_cost = p.settings.cost_child + p.settings.benefit_birth;
         double resources = (p.settings.resources_available)/p.getIndividuals_n();
 
 

@@ -7,15 +7,17 @@ public class Population {
     private boolean status; // attivo/disattivo
     public static volatile int[] n_individuals = new int[4];
     private volatile List<Individual> individuals; // lista di tutte le persone
+    private volatile List<Individual> Male_list;
+    private volatile List<Individual> Female_list;
     private double resources; // pizza pasta maccaroni
     public int iterazione = 0; // # generazione
     protected Settings settings; // impostazioni
     protected double initial_point;
 
     public void mating() throws InterruptedException {
-    Random radmon = new Random();
+    Random random = new Random();
         for (int i = 0; i < individuals.size()/2; i++) {
-            individuals.get(i).give_birth(individuals.get(radmon.nextInt(individuals.size()/2, individuals.size())),3,this);
+            individuals.get(i).give_birth(individuals.get(random.nextInt(individuals.size()/2, individuals.size())),3,this);
         }
         /*for (int i = individuals.size()/2+1; i < individuals.size(); i++) {
             individuals.get(i).give_birth(individuals.get(radmon.nextInt(0, individuals.size()/2)),3,this);
@@ -26,8 +28,12 @@ public class Population {
         this.settings=s;
         this.status = true;
         this.resources = s.resources_available;
-        this.individuals = new ArrayList<Individual>();
         this.initial_point = settings.initial_points;
+
+        this.individuals = new ArrayList<Individual>();
+        this.Male_list = new ArrayList<Individual>();
+        this.Female_list = new ArrayList<Individual>();
+
         this.create_people(faith,phil,coy,fast, initial_point);
     }
 
@@ -86,18 +92,24 @@ public class Population {
         // Create an array of size m where
         // every element is initialized to 0
         int arr[] = new int[m];
-        Random radmon = new Random();
+        Random random = new Random();
         // To make the sum of the final list as n
         for (int i = 0; i < target; i++)
         {
             // Increment any random element
             // from the array by 1
-            arr[(int)(radmon.nextDouble(0.0,1.0) * m)]++;
+            arr[(int)(random.nextDouble(0.0,1.0) * m)]++;
         }
         return arr;
     }
     public List<Individual> getIndividuals() {
         return individuals;
+    }
+    public List<Individual> getMale() {
+        return Male_list;
+    }
+    public List<Individual> getFemale() {
+        return Female_list;
     }
 }
 
