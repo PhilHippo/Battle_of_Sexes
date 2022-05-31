@@ -27,12 +27,11 @@ public abstract class Individual extends Thread{
                 Population.n_individuals[tag]++;
             }
         }
+        public synchronized void wake_up() {
+            notify();
+        }
 
     public synchronized void give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {}
         public void run() {
-            if(this.points<0){
-            //p.n_individual[this.tag]--;
-            //p.getIndividuals().remove(this);
-            }
         }
 }

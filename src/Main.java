@@ -5,29 +5,25 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main  {
-    //ci piace scopare ===> still no bitches tho
         public static void main(String[] args) throws InterruptedException, IOException {
             Settings sett = new Settings(15,20,3,120000,3,60);
-            Population p = new Population(sett,10,10,10,10);//manually setting initial population
+            Population p = new Population(sett,1,1,10,10);//manually setting initial population
             ArrayList<int[]> trend_population = new ArrayList<>();
             ArrayList<Integer> X_time = new ArrayList<>();
-            int counter = 0;
-            System.out.println(p.getIndividuals_n());
-            /*Individual armando = new Philanderer(2,p);
-            Faithful astolfo = new Faithful(2,p);
-            Fast giulia = new Fast(2,p);*/
 
-            while (counter < 10) {//while there isn't stability or resources aren't finished : resources are calculated and stored
-                //astolfo.give_birth(giulia,5,p);
-                //giulia.give_birth(armando,5,p);
-                p.mating(); //method in population that tells every random individual to try to copulate
-                p.iterazione++;
-                System.out.println(Arrays.toString(Population.n_individuals));
-                trend_population.add(Population.n_individuals.clone());
-                X_time.add(counter);
+
+            int counter = 0;
+
+            //while there isn't stability, continue
+            while (counter < 10) {
+                Time.nightTime(p, trend_population, X_time, counter);
+                Time.dayTime(1000);
+                System.out.println(Population.nightClub.toString());
+                //Population.nightClub.clear();
                 counter++;
 
             }
+
             System.out.println("\n" + "Male population: " + p.getMale().size());
             System.out.println("Female population: " + p.getFemale().size());
             System.out.println("Total population: " + p.getIndividuals_n());
@@ -53,7 +49,6 @@ public class Main  {
             //BitmapEncoder.saveBitmap(chart, "./Sample_Chart", BitmapEncoder.BitmapFormat.PNG);
         // or save it in high-res
             //BitmapEncoder.saveBitmapWithDPI(chart, "./Sample_Chart_300_DPI", BitmapEncoder.BitmapFormat.PNG, 300);
-
 
     }
 

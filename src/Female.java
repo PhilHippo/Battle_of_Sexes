@@ -11,6 +11,29 @@ public class Female extends Individual{
         COY 2
         FAST 3
          */
+
+    //wake up and give birth
+    public void wake_up(){
+        synchronized (Population.club) {
+            notify();
+        }
+    }
+
+    public synchronized void run() {
+        Random random = new Random();
+        while (Time.day) {
+
+                try {
+                    //sleep(random.nextInt(50));
+                    Population.club.push(this);
+                    wait();
+                    //give birth
+                } catch (InterruptedException ignored) {}}
+            while (!Time.day) {}
+        }
+
+
+
     public synchronized void give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {
         //per la mutazione serve un valore molto basso ma tra 0 e 100 (crossrate)
         ArrayList<Individual> kids = null;
@@ -19,17 +42,22 @@ public class Female extends Individual{
             taken = true;
             double points_for_kid = calculate_points(partner);
             Random rand = new Random();
+            //todo if phil and coy no courtship
             if (tag == 2) {
-                sleep(000); //corteggiamento
+                sleep(1); //corteggiamento
             }
             int n_bambini = rand.nextInt(1, pop.settings.max_kids_possible);
 
             for (int i = 1; i <= n_bambini; i++) {
                 boolean gender_reveal = rand.nextBoolean();
+                //cross rate percentage to swap type
                 int mutation = rand.nextInt(0, 101);
                 if (mutation <= cross_rate){
                     this.mutation(partner,pop,points_for_kid);
                 }
+
+
+                //create individual
                 else {
                     if (gender_reveal) {
                         if (partner.tag == 0) {
@@ -45,6 +73,8 @@ public class Female extends Individual{
                         }
                     }
                 }
+
+
             }
         }
         taken = false;
@@ -79,7 +109,7 @@ public class Female extends Individual{
             return effective_points;
         }
         //IF SHE IS A FAST
-        double effective_points = this.points - Tot_cost +resources;
+        double effective_points = this.points - Tot_cost + resources;
         this.points -= Tot_cost;
         if ( this.points <= 0){
             this.points += Tot_cost-10;

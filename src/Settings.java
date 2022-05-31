@@ -18,6 +18,7 @@ public class Settings {
         this.resources_available=resources_available;
         this.max_kids_possible=max_kids_possible;
         this.initial_points=initial_points;
+
     }
 
 

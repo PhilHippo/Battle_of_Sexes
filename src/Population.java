@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Stack;
 
 public class Population {
     private volatile int n; // # completo
@@ -14,6 +15,9 @@ public class Population {
     protected Settings settings; // impostazioni
     protected double initial_point;
 
+    protected static MyList<Female> nightClub = new MyList<>();
+    public static MyStack club = new MyStack();
+
     public void mating() throws InterruptedException {
     Random random = new Random();
         for (int i = 0; i < individuals.size()/2; i++) {
@@ -23,6 +27,8 @@ public class Population {
             individuals.get(i).give_birth(individuals.get(radmon.nextInt(0, individuals.size()/2)),3,this);
         }*/
     }
+
+
     //constructor with only n_of_people and r of resources, random n of each type of people
     public Population(Settings s, int phil, int faith, int coy, int fast){
         this.settings=s;
