@@ -1,4 +1,4 @@
-public class Individual extends Thread{
+public abstract class Individual extends Thread{
         protected int tag;
         protected double points;
         protected volatile boolean taken = false;
@@ -17,16 +17,21 @@ public class Individual extends Thread{
             this.p = p;
             p.getIndividuals().add(this);
 
+            if(tag == 0 || tag == 1){
+                p.getMale().add(this);
+            }else{
+                p.getFemale().add(this);
+            }
+
             synchronized (Population.n_individuals) {
                 Population.n_individuals[tag]++;
             }
         }
+        public synchronized void wake_up() {
+            notify();
+        }
 
     public synchronized void give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {}
         public void run() {
-            if(this.points<0){
-            //p.n_individual[this.tag]--;
-            //p.getIndividuals().remove(this);
-            }
         }
 }
