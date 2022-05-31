@@ -14,24 +14,15 @@ public class Male extends Individual{
     @Override
     public void run() {
         Random random = new Random();
-        while(this.points>0){
-            while(Time.day) {
+        while(Time.day) {
+            Female partner = Population.club.pop();
+            System.out.println("Hey beauty!");
+            partner.wakeUp();
+        }
+        while(!Time.day) {
 
-                try {
-                    Female partner = (Female) Population.club.pop();
-                    copulate(partner);
-                    //System.out.println(partner.getName());
-                } catch (InterruptedException ignored) {}}
-
-                }
-                while (!Time.day){
-
-                }
+        }
             }
-
-
-
-
 
 
     @Override

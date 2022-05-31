@@ -21,18 +21,21 @@ public class Female extends Individual{
 
     public synchronized void run() {
         Random random = new Random();
-        while (Time.day) {
-
-                try {
-                    //sleep(random.nextInt(50));
-                    Population.club.push(this);
-                    wait();
-                    //give birth
-                } catch (InterruptedException ignored) {}}
-            while (!Time.day) {}
+        try {
+            while (Time.day) {
+                Population.club.push(this);
+                wait();
+                System.out.println("Let's dance!");
+            }
+            while (!Time.day) {
+            }
+        } catch (InterruptedException ignored) {
         }
+    }
 
-
+    public synchronized void wakeUp() {
+        notifyAll();
+    }
 
     public synchronized void give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {
         //per la mutazione serve un valore molto basso ma tra 0 e 100 (crossrate)

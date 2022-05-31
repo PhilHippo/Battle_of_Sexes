@@ -1,27 +1,20 @@
 import org.knowm.xchart.*;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Main  {
-        public static void main(String[] args) throws InterruptedException, IOException {
+        public static void main(String[] args) throws InterruptedException {
+
             Settings sett = new Settings(15,20,3,120000,3,60);
-            Population p = new Population(sett,1,1,10,10);//manually setting initial population
+            Population p = new Population(sett,0,1,1,0);
             ArrayList<int[]> trend_population = new ArrayList<>();
             ArrayList<Integer> X_time = new ArrayList<>();
 
-
+            // while there isn't stability, continue
             int counter = 0;
-
-            //while there isn't stability, continue
             while (counter < 10) {
                 Time.nightTime(p, trend_population, X_time, counter);
                 Time.dayTime(1000);
-                System.out.println(Population.nightClub.toString());
-                //Population.nightClub.clear();
                 counter++;
-
             }
 
             System.out.println("\n" + "Male population: " + p.getMale().size());

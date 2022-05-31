@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Stack;
 
 public class Population {
     private volatile int n; // # completo
@@ -15,8 +14,7 @@ public class Population {
     protected Settings settings; // impostazioni
     protected double initial_point;
 
-    protected static MyList<Female> nightClub = new MyList<>();
-    public static MyStack club = new MyStack();
+    public static MyList club = new MyList();
 
     public void mating() throws InterruptedException {
     Random random = new Random();
