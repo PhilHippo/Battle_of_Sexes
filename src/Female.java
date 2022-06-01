@@ -7,7 +7,8 @@ public class Female extends Individual{
     @Override
     public synchronized void run() {
         life();
-        System.out.println("female");
+        //System.out.println("female");
+        //todo la morte non funziona bene
     }
 
     private void life(){

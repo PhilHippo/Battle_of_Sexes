@@ -7,7 +7,8 @@ public class Male extends Individual{
     @Override
     public void run() {
         life();
-        System.out.println("male");
+        //System.out.println("male");
+        //todo la morte non funziona bene
     }
 
     private void life(){

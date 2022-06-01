@@ -1,7 +1,7 @@
 public class Individual extends Thread {
 
     protected int type;
-    protected int points = -1;
+    protected int points = 60;
 
     protected final int a = 15;
     protected final int b = 20;
