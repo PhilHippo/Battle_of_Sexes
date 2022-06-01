@@ -1,37 +1,26 @@
-public abstract class Individual extends Thread{
-        protected int tag;
-        protected double points;
-        protected volatile boolean taken = false;
-        protected volatile Population p;
+public class Individual extends Thread {
 
-        /*  TAG
-        PHILANDERERS 0
-        FAITHFUL 1
-        COY 2
-        FAST 3
-         */
+    protected int type;
+    protected int points = -1;
 
-        public Individual(int tag, double points, Population p){
-            this.points=points;
-            this.tag = tag;
-            this.p = p;
-            p.getIndividuals().add(this);
+    protected final int a = 15;
+    protected final int b = 20;
+    protected final int c = 3;
 
-            if(tag == 0 || tag == 1){
-                p.getMale().add(this);
-            }else{
-                p.getFemale().add(this);
-            }
-
-            synchronized (Population.n_individuals) {
-                Population.n_individuals[tag]++;
-            }
+    public Individual (int type) {
+        this.type = type;
+        synchronized (Population.numberIndividuals) {
+            Population.numberIndividuals[type]++;
         }
-        public synchronized void wake_up() {
-            notify();
-        }
+    }
 
-    public synchronized void give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {}
-        public void run() {
-        }
+    public Individual (int type, int points) {
+        this(type);
+        this.points = points;
+    }
+
+    @Override
+    public void run () {
+
+    }
 }

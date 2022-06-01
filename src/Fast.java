@@ -1,23 +1,42 @@
-import java.util.ArrayList;
 import java.util.Random;
 
-public class Fast extends Female{
-    public Fast(double points, Population p) {
-        super(3, points, p);
+public class Fast extends Female {
+    Random random = new Random();
+
+    public Fast() {
+        super(3);
     }
 
-    public synchronized void mutation(Individual partner, Population p, double points_for_kids) throws InterruptedException{
-        Random x = new Random();
-        // x%2 == 0 Faithful
-        // x%2 == 1 Coy
-        if(x.nextBoolean()){
-            new Faithful(points_for_kids,p).start();
-        }else{
-            new Coy(points_for_kids,p).start();
+    @Override
+    public void run() {
+        super.run();
+    }
+
+    @Override
+    public synchronized void giveBirth(Male gentleman){
+        if (gentleman.type == 0){
+            gentleman.points += (a-b/2-c);
+            if(random.nextBoolean()){
+                Fast ind = new Fast();
+                ind.start();
+            }else{
+
+                Philanderer ind = new Philanderer();
+                ind.start();
+            }
+
         }
+        if (gentleman.type == 1){
+            gentleman.points += (a-b/2-c);
+            if(random.nextBoolean()){
+                Fast ind = new Fast();
+                ind.start();
+            }else{
+                Faithful ind = new Faithful();
+                ind.start();
+            }
+
+        }
+        this.notify();
     }
-
-
-
-
 }

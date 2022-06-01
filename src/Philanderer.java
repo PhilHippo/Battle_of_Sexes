@@ -1,8 +1,11 @@
-import java.util.ArrayList;
+public class Philanderer extends Male {
 
-public class Philanderer extends Male{
-    public Philanderer(double points, Population p) {
-        super(points,p,0);
+    public Philanderer() {
+        super(0);
     }
 
+    @Override
+    public void run() {
+        super.run();
+    }
 }

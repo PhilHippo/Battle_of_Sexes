@@ -6,22 +6,21 @@ import java.util.Arrays;
 // night: we collect data while individuals sleep
 public class Time {
 
-    public static Boolean day = true;
+    public static volatile Boolean day = false;
     // true = day
     // false = night
 
     public static void dayTime(long millis) throws InterruptedException{
+        day = true;
+        System.out.println("It is day");
         Thread.sleep(millis);
-        day = false; // becomes night
-
     }
 
-    public static void nightTime(Population p, ArrayList<int[]> trend_population, ArrayList<Integer> X_time, int counter){
-        p.iterazione++;
-        System.out.println(Arrays.toString(Population.n_individuals));
-        trend_population.add(Population.n_individuals.clone());
-        X_time.add(counter);
-
-        day = true; // becomes day
+    public static void nightTime(int gen){
+        day = false;
+        System.out.print("It is night ");
+        System.out.println(Arrays.toString(Population.numberIndividuals));
+        Population.updateTrendPopulation();
+        Population.X_time.add(gen);
     }
 }

@@ -1,54 +1,43 @@
-import org.knowm.xchart.*;
-import java.util.ArrayList;
+import java.io.IOException;
 
-public class Main  {
-        public static void main(String[] args) throws InterruptedException {
+public class Main {
 
-            Settings sett = new Settings(15,20,3,120000,3,60);
-            Population p = new Population(sett,0,1,1,0);
-            ArrayList<int[]> trend_population = new ArrayList<>();
-            ArrayList<Integer> X_time = new ArrayList<>();
+    public static boolean run = true;
 
-            // while there isn't stability, continue
-            int counter = 0;
-            while (counter < 10) {
-                Time.nightTime(p, trend_population, X_time, counter);
-                Time.dayTime(1000);
-                counter++;
+    /*  TYPES
+    PHILANDERER 0
+    FAITHFUL 1
+    COY 2
+    FAST 3
+     */
+
+    public static void main(String[] args) throws InterruptedException, IOException {
+        Population p = new Population(1 ,1,1,1);
+        Population.printMalesFemalesTot(); // initial condition
+
+        int i = 0;
+        while (i < 5) {
+            Time.dayTime(100); // true
+            Time.nightTime(i); // false
+            //Thread.sleep(1000);
+            i++;
+        }
+        Main.run = false;
+        //Population.wakeUpEverybody();
+
+        Thread bodyGuard = new Thread(() -> {
+            synchronized (Population.club) {
+                Population.club.notifyAll();
             }
+            for (Female f : Population.club) {
+                f.interrupt();
+            }
+            System.out.println("THe club is CLOSED!!!!!");
+        });
 
-            System.out.println("\n" + "Male population: " + p.getMale().size());
-            System.out.println("Female population: " + p.getFemale().size());
-            System.out.println("Total population: " + p.getIndividuals_n());
-
-
-            int[] Y_Phil = Population.get_values(0,trend_population);
-            int[] Y_Faith = Population.get_values(1,trend_population);
-            int[] Y_Coy = Population.get_values(2,trend_population);
-            int[] Y_Fast = Population.get_values(3,trend_population);
-            int[] Time = X_time.stream().mapToInt(Integer::intValue).toArray();
-
-
-        // Create Chart
-            XYChart chart = new XYChartBuilder().width(1600).height(800).title(Main.class.getSimpleName()).xAxisTitle("Generations").yAxisTitle("Number of people").build();
-            chart.addSeries("Philanderer", Time, Y_Phil);
-            chart.addSeries("Faithful", Time, Y_Faith);
-            chart.addSeries("Fast", Time, Y_Fast);
-            chart.addSeries("Coy", Time, Y_Coy);
-
-        // Show it
-            new SwingWrapper(chart).displayChart();
-        // Save it
-            //BitmapEncoder.saveBitmap(chart, "./Sample_Chart", BitmapEncoder.BitmapFormat.PNG);
-        // or save it in high-res
-            //BitmapEncoder.saveBitmapWithDPI(chart, "./Sample_Chart_300_DPI", BitmapEncoder.BitmapFormat.PNG, 300);
-
+        bodyGuard.start();
+        Population.printMalesFemalesTot();
+        Population.printChart();
+        //System.out.println(Population.trendPopulation.toString());
     }
-
-
-
-
-
 }
-
-

@@ -1,9 +1,11 @@
-import java.util.ArrayList;
+public class Faithful extends Male {
 
-public class Faithful extends Male{
+    public Faithful () {
+        super(1);
+    }
 
-    public Faithful(double points, Population p) {
-        super(points,p,1);
-    } // deus vult infidel
-
+    @Override
+    public void run() {
+        super.run();
+    }
 }

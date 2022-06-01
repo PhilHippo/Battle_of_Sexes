@@ -1,19 +1,36 @@
-import java.util.ArrayList;
 import java.util.Random;
 
+public class Coy extends Female {
+    Random random = new Random();
 
-public class Coy  extends Female{
-    public Coy(double points,Population p){
-        super(2, points, p);
+    public Coy () {
+        super(2);
     }
 
-    public synchronized void mutation(Individual partner, Population p, double points_for_kids) throws InterruptedException {
-        Random x = new Random();
+    @Override
+    public void run() {
+        super.run();
+    }
 
-        if (x.nextBoolean()) {
-            new Philanderer(points_for_kids, p).start();
-        } else {
-            new Fast(points_for_kids, p).start();
+    @Override
+    public synchronized void giveBirth(Male gentleman){
+
+        if (gentleman.type == 0){
+            gentleman.points += (a-b/2-c);
+            if(random.nextBoolean()){
+                Coy ind = new Coy();
+                ind.start();
+            }else{
+                Philanderer ind = new Philanderer();
+                ind.start();
+
+            }
+
         }
+        if (gentleman.type == 1){
+
+        }
+
+        this.notify();
     }
 }
