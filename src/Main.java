@@ -32,7 +32,7 @@ public class Main {
             for (Female f : Population.club) {
                 f.interrupt();
             }
-            System.out.println("THe club is CLOSED!!!!!");
+            System.out.println("THe club is CLOSED, GET ALL THE FUCK OUT!");
         });
 
         bodyGuard.start();

@@ -15,7 +15,7 @@ public class Coy extends Female {
     @Override
     public synchronized void giveBirth(Male gentleman){
 
-        if (gentleman.type == 0){
+        if (isPhilanderer(gentleman.type)){
             gentleman.points += (a-b/2-c);
             if(random.nextBoolean()){
                 Coy ind = new Coy();
@@ -27,7 +27,7 @@ public class Coy extends Female {
             }
 
         }
-        if (gentleman.type == 1){
+        if (isFaithful(gentleman.type)){
 
         }
 
