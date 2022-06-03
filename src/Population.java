@@ -2,10 +2,9 @@ import org.knowm.xchart.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Population {
+
     public static volatile int[] numberIndividuals = new int[4]; // population counter
     public static MyList club = new MyList();
     public static ArrayList<ArrayList<Integer>> trendPopulation = new ArrayList<>();

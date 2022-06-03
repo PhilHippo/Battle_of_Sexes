@@ -18,7 +18,11 @@ public class Male extends Individual{
                 try {
                     Female myGirl = Population.club.pop();
                     myGirl.giveBirth(this);
-                    if (this.points < 1) return;
+                    if (this.points < 1) {
+                        System.out.println("maschio morto");
+                        Population.numberIndividuals[this.type]--;
+                        return;
+                    }
                     sleep(10);
                 } catch (InterruptedException dying) {}
             }

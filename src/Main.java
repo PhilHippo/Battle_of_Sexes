@@ -12,11 +12,12 @@ public class Main {
      */
 
     public static void main(String[] args) throws InterruptedException, IOException {
-        Population p = new Population(1 ,1,1,1);
+
+        Population p = new Population(10,10,10,10);
         Population.printMalesFemalesTot(); // initial condition
 
         int i = 0;
-        while (i < 5) {
+        while (i < 20) {
             Time.dayTime(100); // true
             Time.nightTime(i); // false
             //Thread.sleep(1000);

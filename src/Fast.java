@@ -1,6 +1,7 @@
 import java.util.Random;
 
 public class Fast extends Female {
+
     Random random = new Random();
 
     public Fast() {
@@ -14,20 +15,22 @@ public class Fast extends Female {
 
     @Override
     public synchronized void giveBirth(Male gentleman){
+
         if (isPhilanderer(gentleman.type)){
-            gentleman.points += (a-b/2-c);
+            gentleman.points += a;
+            this.points += (a-b);
             if(random.nextBoolean()){
                 Fast ind = new Fast();
                 ind.start();
             }else{
-
                 Philanderer ind = new Philanderer();
                 ind.start();
             }
-
         }
+
         if (isFaithful(gentleman.type)){
-            gentleman.points += (a-b/2-c);
+            gentleman.points += (a-b/2);
+            this.points += (a-b/2);
             if(random.nextBoolean()){
                 Fast ind = new Fast();
                 ind.start();

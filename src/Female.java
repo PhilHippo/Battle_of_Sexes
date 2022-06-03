@@ -17,7 +17,9 @@ public class Female extends Individual{
                 Population.club.push(this);
                 try {
                     wait();
-                    if (this.points < 1) return;
+                    if (this.points < 1) {
+                         Population.numberIndividuals[this.type]--;
+                        return;}
                     sleep(10); // troppo irrequieti
                 } catch (InterruptedException dying) {}
             }
