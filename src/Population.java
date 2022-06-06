@@ -2,6 +2,7 @@ import org.knowm.xchart.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Population {
 
@@ -99,6 +100,35 @@ public class Population {
         ratio_array[3] = ratio_s;
         return ratio_array;
     }
+
+    //return the payoff matrix - phi_coy = 0 and fast_phi = a
+    public static int[][][] matrixCalculator(int a, int b, int c){
+        int faith_coy = a - b/2 - c;
+        int faith_fast = a - b/2;
+        int phi_fast = a-b;
+
+        return new int[][][]{{{faith_coy, faith_coy},{0, 0}},{{faith_fast, faith_fast},{phi_fast, a}}};
+    }
+
+    public static int[] equilibriumCalculator(){
+
+        int[] equilibrium = new int[]{};
+        return equilibrium;
+    }
+
+    //prints the payoff matrix
+    public static void printMatrix(int[][][] matrix){
+        System.out.println();
+        System.out.println("     F      P");
+        for (int i = 0; i < matrix.length; i++) {
+            if (i == 0){System.out.print("C ");}else{System.out.print("S ");}
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(Arrays.toString(matrix[i][j]) + " ");
+            }
+            System.out.println();
+        }
+    }
+
 
     public static void printChart() throws IOException {
         int[] Y_Phil = convertIntegers(trendPopulation.get(0));

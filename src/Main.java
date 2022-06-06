@@ -33,6 +33,8 @@ public class Main {
             for (Female f : Population.club) {
                 f.interrupt();
             }
+
+            Population.printMatrix(Population.matrixCalculator(Individual.a, Individual.b, Individual.c));
             System.out.println("THe club is CLOSED, GET ALL THE FUCK OUT!");
         });
 
