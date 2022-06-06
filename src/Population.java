@@ -74,23 +74,57 @@ public class Population {
         return ret;
     }
 
+    public static  int[][] get_ratio(){
+        int[][] ratio_array = new  int[4][];
+        int len = trendPopulation.get(1).size();
+        int[] ratio_p = new  int[len];
+        int[] ratio_f = new  int[len];
+        int[] ratio_c = new  int[len];
+        int[] ratio_s = new  int[len];
+        for(int i = 0; i<len; i++){
+            float sum = trendPopulation.get(0).get(i) + trendPopulation.get(1).get(i)  + trendPopulation.get(2).get(i)  + trendPopulation.get(3).get(i) ;
+            int  p = (int) ((trendPopulation.get(0).get(i) /sum)*100);
+            int f = (int)((trendPopulation.get(1).get(i) /sum)*100);
+            int c =  (int)((trendPopulation.get(2).get(i) /sum)*100);
+            int s = (int) ((trendPopulation.get(3).get(i) /sum)*100);
+            ratio_p[i] = p;
+            ratio_f[i] = f;
+            ratio_c[i] = c;
+            ratio_s[i] = s;
+        }
+
+        ratio_array[0] = ratio_p;
+        ratio_array[1] = ratio_f;
+        ratio_array[2] = ratio_c;
+        ratio_array[3] = ratio_s;
+        return ratio_array;
+    }
+
     public static void printChart() throws IOException {
         int[] Y_Phil = convertIntegers(trendPopulation.get(0));
         int[] Y_Faith = convertIntegers(trendPopulation.get(1));
         int[] Y_Coy = convertIntegers(trendPopulation.get(2));
         int[] Y_Fast = convertIntegers(trendPopulation.get(3));
         int[] Time = X_time.stream().mapToInt(Integer::intValue).toArray();
+        int[][] Ratios = get_ratio();
 
         XYChart chart = new XYChartBuilder().width(1600).height(800).title("Population Trend").xAxisTitle("Time").yAxisTitle("Number of people").build();
-
         chart.addSeries("Philanderer", Time, Y_Phil);
         chart.addSeries("Faithful", Time, Y_Faith);
         chart.addSeries("Fast", Time, Y_Fast);
         chart.addSeries("Coy", Time, Y_Coy);
 
-        new SwingWrapper(chart).displayChart();
+        XYChart chart_ratio = new XYChartBuilder().width(1600).height(800).title("Population Ratio").xAxisTitle("Time").yAxisTitle("Ratio of people").build();
+        chart_ratio.addSeries("Philanderer_ratio", Time, Ratios[0]);
+        chart_ratio.addSeries("Faithful_ratio", Time, Ratios[1]);
+        chart_ratio.addSeries("Fast_ratio", Time, Ratios[2]);
+        chart_ratio.addSeries("Coy_ratio", Time, Ratios[3]);
 
-        BitmapEncoder.saveBitmap(chart, "./Sample_Chart", BitmapEncoder.BitmapFormat.PNG);
+        new SwingWrapper(chart).displayChart();
+        new SwingWrapper(chart_ratio).displayChart();
+
+        BitmapEncoder.saveBitmap(chart, "./Chart_population", BitmapEncoder.BitmapFormat.PNG);
+        BitmapEncoder.saveBitmap(chart_ratio, "./Chart_ratio", BitmapEncoder.BitmapFormat.PNG);
     }
 
 }

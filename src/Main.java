@@ -17,7 +17,7 @@ public class Main {
         Population.printMalesFemalesTot(); // initial condition
 
         int i = 0;
-        while (i < 20) {
+        while (i < 5) {
             Time.dayTime(100); // true
             Time.nightTime(i); // false
             //Thread.sleep(1000);
@@ -35,6 +35,8 @@ public class Main {
             }
             System.out.println("THe club is CLOSED, GET ALL THE FUCK OUT!");
         });
+
+
 
         bodyGuard.start();
         Population.printMalesFemalesTot();
