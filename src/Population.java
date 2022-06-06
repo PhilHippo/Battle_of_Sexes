@@ -22,7 +22,6 @@ public class Population {
     private void createIndividuals (int phil, int faith, int coy, int fast) {
         for (; phil>0; phil--) {
             Philanderer ind = new Philanderer();
-            ind.setName("Mirco" + phil);
             ind.start();
         }
         for (; faith>0; faith--) {
@@ -31,7 +30,6 @@ public class Population {
         }
         for (; coy>0; coy--) {
             Coy ind = new Coy();
-            ind.setName("Cloe");
             ind.start();
         }
         for (; fast>0; fast--) {
@@ -60,7 +58,7 @@ public class Population {
 
     public static void updateTrendPopulation() {
         //System.out.println(Arrays.toString(Population.trendPopulation));
-        for (int i=0; i<4; i++) {
+        for (int i = 0; i < 4; i++) {
             Population.trendPopulation.get(i).add(Population.numberIndividuals[i]);
         }
     }
@@ -68,7 +66,7 @@ public class Population {
     public static int[] convertIntegers(ArrayList<Integer> integers)
     {
         int[] ret = new int[integers.size()];
-        for (int i=0; i < ret.length; i++)
+        for (int i = 0; i < ret.length; i++)
         {
             ret[i] = integers.get(i);
         }
@@ -78,16 +76,16 @@ public class Population {
     public static  int[][] get_ratio(){
         int[][] ratio_array = new  int[4][];
         int len = trendPopulation.get(1).size();
-        int[] ratio_p = new  int[len];
-        int[] ratio_f = new  int[len];
-        int[] ratio_c = new  int[len];
-        int[] ratio_s = new  int[len];
-        for(int i = 0; i<len; i++){
+        int[] ratio_p = new int[len];
+        int[] ratio_f = new int[len];
+        int[] ratio_c = new int[len];
+        int[] ratio_s = new int[len];
+        for(int i = 0; i < len; i++){
             float sum = trendPopulation.get(0).get(i) + trendPopulation.get(1).get(i)  + trendPopulation.get(2).get(i)  + trendPopulation.get(3).get(i) ;
-            int  p = (int) ((trendPopulation.get(0).get(i) /sum)*100);
-            int f = (int)((trendPopulation.get(1).get(i) /sum)*100);
-            int c =  (int)((trendPopulation.get(2).get(i) /sum)*100);
-            int s = (int) ((trendPopulation.get(3).get(i) /sum)*100);
+            int p = (int) ((trendPopulation.get(0).get(i) /sum) * 100);
+            int f = (int) ((trendPopulation.get(1).get(i) /sum) * 100);
+            int c = (int) ((trendPopulation.get(2).get(i) /sum) * 100);
+            int s = (int) ((trendPopulation.get(3).get(i) /sum) * 100);
             ratio_p[i] = p;
             ratio_f[i] = f;
             ratio_c[i] = c;

@@ -17,11 +17,13 @@ public class Main {
         Population.printMalesFemalesTot(); // initial condition
 
         int i = 0;
-        while (i < 5) {
-            Time.dayTime(100); // true
+        Time.nightTime(i);
+        while (i < 10) {
+            i++;
+            Time.dayTime(50); // true
             Time.nightTime(i); // false
             //Thread.sleep(1000);
-            i++;
+
         }
         Main.run = false;
         //Population.wakeUpEverybody();
@@ -35,7 +37,7 @@ public class Main {
             }
 
             Population.printMatrix(Population.matrixCalculator(Individual.a, Individual.b, Individual.c));
-            System.out.println("THe club is CLOSED, GET ALL THE FUCK OUT!");
+            System.out.println("The club is CLOSED, GET ALL THE FUCK OUT!");
         });
 
 
