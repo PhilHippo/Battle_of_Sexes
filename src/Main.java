@@ -2,7 +2,7 @@ import java.io.IOException;
 
 public class Main {
 
-    public static boolean run = true;
+    public static boolean untilEquilibriumReached = true;
 
     /*  TYPES
     PHILANDERER 0
@@ -13,20 +13,17 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException, IOException {
 
-        Population p = new Population(10,10,10,10);
+        Population p = new Population(1,1,1,1);
         Population.printMalesFemalesTot(); // initial condition
+        Population.updateGraph(0); // graph at time zero
 
         int i = 0;
-        Time.nightTime(i);
         while (i < 10) {
             i++;
             Time.dayTime(50); // true
             Time.nightTime(i); // false
-            //Thread.sleep(1000);
-
         }
-        Main.run = false;
-        //Population.wakeUpEverybody();
+        Main.untilEquilibriumReached = false;
 
         Thread bodyGuard = new Thread(() -> {
             synchronized (Population.club) {
@@ -36,15 +33,14 @@ public class Main {
                 f.interrupt();
             }
 
-            Population.printMatrix(Population.matrixCalculator(Individual.a, Individual.b, Individual.c));
-            System.out.println("The club is CLOSED, GET ALL THE FUCK OUT!");
+            System.out.println("The club is CLOSED!");
         });
 
-
-
         bodyGuard.start();
+        Thread.sleep(100); // just to wait for the bodyguard to finish
+        System.out.println(); // so the prints at the end are in order and separated
         Population.printMalesFemalesTot();
+        Population.printMatrix(Population.matrixCalculator(Individual.a, Individual.b, Individual.c));
         Population.printChart();
-        //System.out.println(Population.trendPopulation.toString());
     }
 }

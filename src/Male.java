@@ -7,29 +7,25 @@ public class Male extends Individual{
     @Override
     public void run() {
         life();
-        //System.out.println("male");
-        //todo la morte non funziona bene
+        // todo per ora muoiono solo le fast
     }
 
     private void life(){
-        while(Main.run) {
+        while(Main.untilEquilibriumReached) {
 
             while(Time.day) {
                 try {
                     Female myGirl = Population.club.pop();
                     myGirl.giveBirth(this);
                     if (this.points < 1) {
-                        System.out.println("maschio morto");
                         Population.numberIndividuals[this.type]--;
                         return;
                     }
-                    sleep(10);
+                    sleep(25); // troppo irrequieti
                 } catch (InterruptedException dying) {}
             }
-            while(!Time.day) {
-                // night
-                if(!Main.run) break; // am I alive?
-            }
+
+            // it is night here: does nothing
         }
     }
 }

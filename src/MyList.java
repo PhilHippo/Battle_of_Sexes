@@ -10,7 +10,7 @@ public class MyList extends ArrayList<Female> {
 
     public synchronized Female pop() throws InterruptedException{
         while (this.isEmpty()) {
-            if (!Main.run) throw new InterruptedException(); // the club has been closed
+            if (!Main.untilEquilibriumReached) throw new InterruptedException(); // the club has been closed
             //System.out.println("Where is everybody?");
             wait();
         }

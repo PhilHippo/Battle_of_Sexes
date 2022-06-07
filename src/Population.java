@@ -1,5 +1,4 @@
 import org.knowm.xchart.*;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,34 +45,26 @@ public class Population {
         System.out.println("Total population: " + (males + females));
     }
 
-    public static void wakeUpEverybody() {
-        synchronized (club) {
-            club.notifyAll();
-        }
-        for (Female f : club) {
-            //f.wakeUp();
-        }
-        System.out.println("THe club has been closed!");
+    public static void updateGraph(int gen) {
+        Population.updateTrendPopulation();
+        Population.X_time.add(gen);
     }
 
     public static void updateTrendPopulation() {
-        //System.out.println(Arrays.toString(Population.trendPopulation));
         for (int i = 0; i < 4; i++) {
             Population.trendPopulation.get(i).add(Population.numberIndividuals[i]);
         }
     }
 
-    public static int[] convertIntegers(ArrayList<Integer> integers)
-    {
+    public static int[] convertIntegers(ArrayList<Integer> integers) {
         int[] ret = new int[integers.size()];
-        for (int i = 0; i < ret.length; i++)
-        {
+        for (int i = 0; i < ret.length; i++) {
             ret[i] = integers.get(i);
         }
         return ret;
     }
 
-    public static  int[][] get_ratio(){
+    public static int[][] get_ratio(){
         int[][] ratio_array = new  int[4][];
         int len = trendPopulation.get(1).size();
         int[] ratio_p = new int[len];
@@ -108,8 +99,8 @@ public class Population {
         return new int[][][]{{{faith_coy, faith_coy},{0, 0}},{{faith_fast, faith_fast},{phi_fast, a}}};
     }
 
+    // TODO
     public static int[] equilibriumCalculator(){
-
         int[] equilibrium = new int[]{};
         return equilibrium;
     }
@@ -126,7 +117,6 @@ public class Population {
             System.out.println();
         }
     }
-
 
     public static void printChart() throws IOException {
         int[] Y_Phil = convertIntegers(trendPopulation.get(0));
@@ -154,5 +144,4 @@ public class Population {
         BitmapEncoder.saveBitmap(chart, "./Chart_population", BitmapEncoder.BitmapFormat.PNG);
         BitmapEncoder.saveBitmap(chart_ratio, "./Chart_ratio", BitmapEncoder.BitmapFormat.PNG);
     }
-
 }

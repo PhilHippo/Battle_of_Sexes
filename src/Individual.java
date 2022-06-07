@@ -27,18 +27,15 @@ public class Individual extends Thread {
         this.points = points;
     }
 
-    public boolean isPhilanderer(int tag){ return tag == 0; }
+    public boolean isPhilanderer(int tag){
+        return tag == 0;
+    }
 
     public boolean isFaithful(int tag){
         return tag == 1;
     }
 
-
-
-
-
     @Override
     public void run () {
     }
-
 }
