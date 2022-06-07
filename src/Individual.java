@@ -8,7 +8,9 @@ public class Individual extends Thread {
      */
 
     protected int type;
-    protected int points = 4;      //initial points
+    protected int points = 4;   //initial points
+    protected volatile int numberChildren = 0;
+    protected static int maxChildren = 2; // todo until Equilibrium is reached
 
     protected static final int a = 15;     //benefit of having a baby
     protected static final int b = 20;     //cost of having a baby !!always even!!

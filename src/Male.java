@@ -18,7 +18,9 @@ public class Male extends Individual{
                     Female myGirl = Population.club.pop();
                     myGirl.giveBirth(this);
                     if (this.points < 1) {
-                        Population.numberIndividuals[this.type]--;
+                        synchronized (Population.numberIndividuals) {
+                            Population.numberIndividuals[this.type]--;
+                        }
                         return;
                     }
                     sleep(25); // troppo irrequieti

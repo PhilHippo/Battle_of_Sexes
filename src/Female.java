@@ -18,8 +18,10 @@ public class Female extends Individual{
                 try {
                     wait();
                     if (this.points < 1) {
-                         Population.numberIndividuals[this.type]--;
-                         return;
+                        synchronized (Population.numberIndividuals) {
+                            Population.numberIndividuals[this.type]--;
+                        }
+                        return;
                     }
                     sleep(25); // troppo irrequieti
                 } catch (InterruptedException dying) {}
