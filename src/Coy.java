@@ -21,7 +21,7 @@ public class Coy extends Female {
             gentleman.points += (a-b/2-c);
             this.points += (a-b/2-c);
 
-            if(false){
+            if(random.nextBoolean()){
                 Coy ind = new Coy();
                 ind.start();
             }
@@ -29,6 +29,9 @@ public class Coy extends Female {
                 Faithful ind = new Faithful();
                 ind.start();
             }
+
+            this.numberChildren++;
+            gentleman.numberChildren++;
         }
 
         //TODO

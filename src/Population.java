@@ -72,11 +72,12 @@ public class Population {
         int[] ratio_c = new int[len];
         int[] ratio_s = new int[len];
         for(int i = 0; i < len; i++){
-            float sum = trendPopulation.get(0).get(i) + trendPopulation.get(1).get(i)  + trendPopulation.get(2).get(i)  + trendPopulation.get(3).get(i) ;
-            int p = (int) ((trendPopulation.get(0).get(i) /sum) * 100);
-            int f = (int) ((trendPopulation.get(1).get(i) /sum) * 100);
-            int c = (int) ((trendPopulation.get(2).get(i) /sum) * 100);
-            int s = (int) ((trendPopulation.get(3).get(i) /sum) * 100);
+            float sumMales = trendPopulation.get(0).get(i) + trendPopulation.get(1).get(i);
+            float sumFemales = trendPopulation.get(2).get(i)  + trendPopulation.get(3).get(i);
+            int p = (int) ((trendPopulation.get(0).get(i) /sumMales) * 100);
+            int f = (int) ((trendPopulation.get(1).get(i) /sumMales) * 100);
+            int c = (int) ((trendPopulation.get(2).get(i) /sumFemales) * 100);
+            int s = (int) ((trendPopulation.get(3).get(i) /sumFemales) * 100);
             ratio_p[i] = p;
             ratio_f[i] = f;
             ratio_c[i] = c;

@@ -46,6 +46,9 @@ public class Fast extends Female {
             }
         }
 
+        this.numberChildren++;
+        gentleman.numberChildren++;
+
         this.notify();
     }
 }

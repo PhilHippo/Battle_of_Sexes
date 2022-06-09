@@ -12,12 +12,18 @@ public class Male extends Individual{
                 try {
                     Female myGirl = Population.club.pop();
                     myGirl.giveBirth(this);
+                    // start check points
                     if (this.points < 1) {
                         synchronized (Population.numberIndividuals) {
                             Population.numberIndividuals[this.type]--;
                         }
                         return;
                     }
+                    // start check children
+                    if (this.numberChildren >= maxChildren) {
+                        return;
+                    }
+                    // end checks
                     sleep(25); // troppo irrequieti
                 } catch (InterruptedException dying) {}
             }
