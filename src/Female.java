@@ -6,11 +6,6 @@ public class Female extends Individual{
 
     @Override
     public synchronized void run() {
-        life();
-        // todo per ora muoiono solo le fast
-    }
-
-    private void life(){
         while(Main.untilEquilibriumReached) {
 
             while(Time.day) {
@@ -29,6 +24,7 @@ public class Female extends Individual{
 
             // it is night here: does nothing
         }
+        // todo per ora muoiono solo le fast
     }
 
     public synchronized void giveBirth(Male gentleman){}
