@@ -14,12 +14,13 @@ public class Coy extends Female {
     }
 
     @Override
-    public synchronized void giveBirth(Male gentleman){
+    public synchronized void giveBirth(Male gentleman) throws InterruptedException{
 
         if (isFaithful(gentleman.type)){
 
             gentleman.points += (a-b/2-c);
             this.points += (a-b/2-c);
+            //sleep(10); // courtship
 
             if(random.nextBoolean()){
                 Coy ind = new Coy();

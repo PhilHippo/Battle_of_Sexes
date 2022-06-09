@@ -130,14 +130,14 @@ public class Population {
         XYChart chart = new XYChartBuilder().width(1600).height(800).title("Population Trend").xAxisTitle("Time").yAxisTitle("Number of people").build();
         chart.addSeries("Philanderer", Time, Y_Phil);
         chart.addSeries("Faithful", Time, Y_Faith);
-        chart.addSeries("Fast", Time, Y_Fast);
         chart.addSeries("Coy", Time, Y_Coy);
+        chart.addSeries("Fast", Time, Y_Fast);
 
         XYChart chart_ratio = new XYChartBuilder().width(1600).height(800).title("Population Ratio").xAxisTitle("Time").yAxisTitle("Ratio of people").build();
         chart_ratio.addSeries("Philanderer_ratio", Time, Ratios[0]);
         chart_ratio.addSeries("Faithful_ratio", Time, Ratios[1]);
-        chart_ratio.addSeries("Fast_ratio", Time, Ratios[2]);
-        chart_ratio.addSeries("Coy_ratio", Time, Ratios[3]);
+        chart_ratio.addSeries("Coy_ratio", Time, Ratios[2]);
+        chart_ratio.addSeries("Fast_ratio", Time, Ratios[3]);
 
         new SwingWrapper(chart).displayChart();
         new SwingWrapper(chart_ratio).displayChart();

@@ -20,9 +20,11 @@ public class Female extends Individual{
                         return;
                     }
                     // start check children
+                    /*
                     if (this.numberChildren >= maxChildren) {
                         return;
                     }
+                     */
                     // end checks
                     sleep(25); // troppo irrequieti
                 } catch (InterruptedException dying) {}
@@ -33,5 +35,5 @@ public class Female extends Individual{
         // todo per ora muoiono solo le fast
     }
 
-    public synchronized void giveBirth(Male gentleman){}
+    public synchronized void giveBirth(Male gentleman) throws InterruptedException{}
 }

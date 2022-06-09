@@ -20,9 +20,11 @@ public class Male extends Individual{
                         return;
                     }
                     // start check children
+                    /*
                     if (this.numberChildren >= maxChildren) {
                         return;
                     }
+                     */
                     // end checks
                     sleep(25); // troppo irrequieti
                 } catch (InterruptedException dying) {}

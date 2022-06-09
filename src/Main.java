@@ -18,7 +18,7 @@ public class Main {
         Population.updateGraph(0); // graph at time zero
 
         int i = 0;
-        while (i < 13) {
+        while (i < 7) {
             i++;
             Time.dayTime(50); // true
             Time.nightTime(i); // false
