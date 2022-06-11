@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException, IOException {
 
-        Population p = new Population(5,5,5,5);
+        Population p = new Population(2,2,2,2);
         Population.printMalesFemalesTot(); // initial condition
         Population.updateGraph(0); // graph at time zero
 

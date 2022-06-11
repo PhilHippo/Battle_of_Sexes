@@ -13,12 +13,15 @@ public class Female extends Individual{
                 try {
                     wait();
                     // start check points
+                    /*
                     if (this.points < 1) {
                         synchronized (Population.numberIndividuals) {
                             Population.numberIndividuals[this.type]--;
                         }
+                        System.out.println("morte");
                         return;
                     }
+                     */
                     // start check children
                     /*
                     if (this.numberChildren >= maxChildren) {

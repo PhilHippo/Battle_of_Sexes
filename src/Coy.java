@@ -35,6 +35,23 @@ public class Coy extends Female {
             gentleman.numberChildren++;
         }
 
+        if (isPhilanderer(gentleman.type)){
+
+            gentleman.points += a;
+            this.points += (a-b);
+
+            if(random.nextBoolean()){
+                Coy ind = new Coy();
+                ind.start();
+            }
+            else {
+                Philanderer ind = new Philanderer();
+                ind.start();
+            }
+        }
+
+
+
         //TODO
         // if (isPhilanderer(gentleman.type)) {}
 
