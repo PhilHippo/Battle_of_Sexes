@@ -24,7 +24,7 @@ public class Male extends Individual{
                         return;
                     }
                     // end checks
-                    sleep(25); // troppo irrequieti
+                    sleep(40); // troppo irrequieti
                 } catch (InterruptedException dying) {}
             }
 

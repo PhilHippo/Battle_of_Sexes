@@ -33,5 +33,5 @@ public class Female extends Individual{
         // todo per ora muoiono solo le fast
     }
 
-    public synchronized void giveBirth(Male gentleman){}
+    public synchronized void giveBirth(Male gentleman) throws InterruptedException {}
 }

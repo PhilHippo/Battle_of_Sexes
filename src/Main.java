@@ -13,12 +13,12 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException, IOException {
 
-        Population p = new Population(5,5,5,5);
+        Population p = new Population(10,10,10,10);
         Population.printMalesFemalesTot(); // initial condition
         Population.updateGraph(0); // graph at time zero
 
         int i = 0;
-        while (i < 13) {
+        while (i < 50) {
             i++;
             Time.dayTime(50); // true
             Time.nightTime(i); // false
@@ -34,7 +34,8 @@ public class Main {
                 f.interrupt();
             }
 
-            System.out.println("The club is CLOSED!");
+            Population.printMatrix(Population.matrixCalculator(Individual.a, Individual.b, Individual.c));
+            System.out.println("The club is CLOSED, GET ALL THE FUCK OUT!");
         });
 
         bodyGuard.start();
