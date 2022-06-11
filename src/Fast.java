@@ -17,7 +17,6 @@ public class Fast extends Female {
     public synchronized void giveBirth(Male gentleman){
 
         if (isPhilanderer(gentleman.type)){
-
             gentleman.points += a;
             this.points += (a-b);
 

@@ -5,9 +5,8 @@ public class Female extends Individual{
     }
 
     @Override
-    public synchronized void run() {
-        while(Main.untilEquilibriumReached && numberChildren < maxChildren) {
-
+    public synchronized void run() { //&& numberChildren < maxChildren
+        while(Main.untilEquilibriumReached) {
             while(Time.day) {
                 Population.club.push(this);
                 try {
@@ -29,7 +28,7 @@ public class Female extends Individual{
                     }
                      */
                     // end checks
-                    sleep(25); // troppo irrequieti
+                    //sleep(40); // troppo irrequieti
                 } catch (InterruptedException dying) {}
             }
 

@@ -13,16 +13,17 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException, IOException {
 
-        Population p = new Population(2,2,2,2);
+        Population p = new Population(5,5,5,5);
         Population.printMalesFemalesTot(); // initial condition
         Population.updateGraph(0); // graph at time zero
 
         int i = 0;
-        while (i < 7) {
+        while (i < 20) {
             i++;
             Time.dayTime(50); // true
             Time.nightTime(i); // false
-            Population.printMalesFemalesTot();
+            Population.club.shuffle();
+            //Population.printMalesFemalesTot();
         }
         Main.untilEquilibriumReached = false;
 

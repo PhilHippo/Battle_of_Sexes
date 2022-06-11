@@ -12,13 +12,13 @@ public class Male extends Individual{
                 try {
                     Female myGirl = Population.club.pop();
                     myGirl.giveBirth(this);
-                    // start check points
+                    /* start check points
                     if (this.points < 1) {
                         synchronized (Population.numberIndividuals) {
                             Population.numberIndividuals[this.type]--;
                         }
                         return;
-                    }
+                    }*/
                     // start check children
                     /*
                     if (this.numberChildren >= maxChildren) {
@@ -26,7 +26,7 @@ public class Male extends Individual{
                     }
                      */
                     // end checks
-                    sleep(40); // troppo irrequieti
+                    //sleep(40); // troppo irrequieti
                 } catch (InterruptedException dying) {}
             }
 
