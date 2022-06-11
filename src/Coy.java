@@ -14,13 +14,12 @@ public class Coy extends Female {
     }
 
     @Override
-    public synchronized void giveBirth(Male gentleman) throws InterruptedException{
+    public synchronized void giveBirth(Male gentleman){
 
         if (isFaithful(gentleman.type)){
 
             gentleman.points += (a-b/2-c);
             this.points += (a-b/2-c);
-            //sleep(10); // courtship
 
             if(random.nextBoolean()){
                 Coy ind = new Coy();
@@ -34,23 +33,6 @@ public class Coy extends Female {
             this.numberChildren++;
             gentleman.numberChildren++;
         }
-
-        if (isPhilanderer(gentleman.type)){
-
-            gentleman.points += a;
-            this.points += (a-b);
-
-            if(random.nextBoolean()){
-                Coy ind = new Coy();
-                ind.start();
-            }
-            else {
-                Philanderer ind = new Philanderer();
-                ind.start();
-            }
-        }
-
-
 
         //TODO
         // if (isPhilanderer(gentleman.type)) {}
