@@ -11,7 +11,7 @@ public class Fast extends Female {
     @Override
     public void run() {
         try {
-            sleep(10);
+            sleep(8);
             super.run();
 
         } catch (InterruptedException e) {

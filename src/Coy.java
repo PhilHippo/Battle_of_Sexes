@@ -11,7 +11,7 @@ public class Coy extends Female {
     @Override
     public void run() {
         try {
-            sleep(5); // troppo irrequieti
+            sleep(13); // troppo irrequieti
             super.run();
 
         } catch (InterruptedException e) {
@@ -23,7 +23,7 @@ public class Coy extends Female {
 
         if (isFaithful(gentleman.type)){
             sleep(10);
-            gentleman.sleep(10);
+            gentleman.sleep(15);
             gentleman.points += (Population.a- Population.b/2- Population.c);
             this.points += (Population.a- Population.b/2- Population.c);
 

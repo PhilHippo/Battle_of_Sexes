@@ -19,7 +19,9 @@ public class Female extends Individual{
                         interrupt();
                         return;
                     }
-                } catch (InterruptedException dying) {}
+                } catch (InterruptedException dying) {
+                    System.out.println("I died in yo arms tonight. controllare cosa significa questo messaggio in female 23");
+                }
             }
             this.points-= Population.d;
         }

@@ -14,12 +14,12 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException, IOException {
 
-        Population p = new Population(25,25,25,25,15 , 20, 3, 4);
+        Population p = new Population(25,25,25,25,15 , 20, 3, 5);
         Population.printMalesFemalesTot(); // initial condition
         Population.updateGraph(0); // graph at time zero
 
         int i = 0;
-        while (i < 200) {
+        while (i < 150) {
             i++;
             Time.dayTime(30); // true
             Time.nightTime(i); // false
