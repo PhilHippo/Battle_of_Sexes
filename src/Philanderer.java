@@ -6,6 +6,11 @@ public class Philanderer extends Male {
 
     @Override
     public void run() {
-        super.run();
+        try {
+            sleep(10); // troppo irrequieti
+            super.run();
+
+        } catch (InterruptedException e) {
+        }
     }
 }

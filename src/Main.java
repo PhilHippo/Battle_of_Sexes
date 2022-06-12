@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Main {
 
@@ -13,17 +14,17 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException, IOException {
 
-        Population p = new Population(5,5,5,5);
+        Population p = new Population(25,25,25,25,15 , 20, 3, 4);
         Population.printMalesFemalesTot(); // initial condition
         Population.updateGraph(0); // graph at time zero
 
         int i = 0;
-        while (i < 20) {
+        while (i < 200) {
             i++;
-            Time.dayTime(50); // true
+            Time.dayTime(30); // true
             Time.nightTime(i); // false
-            Population.club.shuffle();
             //Population.printMalesFemalesTot();
+            //assert (Population.numberIndividuals ==);
         }
         Main.untilEquilibriumReached = false;
 
@@ -39,10 +40,11 @@ public class Main {
         });
 
         bodyGuard.start();
-        Thread.sleep(100); // just to wait for the bodyguard to finish
+        //Thread.sleep(100); // just to wait for the bodyguard to finish
         System.out.println(); // so the prints at the end are in order and separated
+        System.out.println(Arrays.toString(Population.numberIndividuals));
         Population.printMalesFemalesTot();
-        Population.printMatrix(Population.matrixCalculator(Individual.a, Individual.b, Individual.c));
+        //Population.printMatrix(Population.matrixCalculator());
         Population.printChart();
     }
 }

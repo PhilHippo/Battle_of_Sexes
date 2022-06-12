@@ -3,15 +3,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Population {
+public class Population { // a b c d should be final but there are problems
 
+    protected static int a;     //benefit of having a baby
+    protected static int b;     //cost of having a baby !!always even!!
+    protected static int c;     //cost of courtship
+    protected static int d;     //cost of life
     public static volatile int[] numberIndividuals = new int[4]; // population counter
-    public static MyList club = new MyList();
+    public static volatile MyList club = new MyList();
     public static ArrayList<ArrayList<Integer>> trendPopulation = new ArrayList<>();
+    protected static int maxChildren = 2; // todo until Equilibrium is reached
     static ArrayList<Integer> X_time = new ArrayList<>();
 
-    public Population (int phil, int faith, int coy, int fast) {
+    public Population (int phil, int faith, int coy, int fast, int av, int bv, int cv, int dv) {
         this.createIndividuals(phil, faith, coy, fast);
+        a = av;
+        b = bv;
+        c = cv;
+        d = dv;
         // initialize trendPopulation
         for (int i=0; i<4; i++) {
             Population.trendPopulation.add(new ArrayList<Integer>());
@@ -40,9 +49,9 @@ public class Population {
     public static void printMalesFemalesTot() {
         int males = numberIndividuals[0] + numberIndividuals[1];
         int females = numberIndividuals[2] + numberIndividuals[3];
-        System.out.println("Male population: " + males);
-        System.out.println("Female population: " + females);
-        System.out.println("Total population: " + (males + females));
+        System.out.print("Male population: " + males + ", ");
+        System.out.print("Female population: " + females + ", ");
+        System.out.println("Total: " + (males + females));
     }
 
     public static void updateGraph(int gen) {
@@ -91,8 +100,25 @@ public class Population {
         return ratio_array;
     }
 
+    public static void hard_life(){
+
+    }
+    protected Thread[] getGroupThreads( final ThreadGroup group ) {
+        if ( group == null )
+            throw new NullPointerException( "Null thread group" );
+        int nAlloc = group.activeCount( );
+        int n = 0;
+        Thread[] threads;
+        do {
+            nAlloc *= 2;
+            threads = new Thread[ nAlloc ];
+            n = group.enumerate( threads );
+        } while ( n == nAlloc );
+        return java.util.Arrays.copyOf( threads, n );
+    }
+
     //return the payoff matrix - phi_coy = 0 and fast_phi = a
-    public static int[][][] matrixCalculator(int a, int b, int c){
+    public static int[][][] matrixCalculator(){
         int faith_coy = a - b/2 - c;
         int faith_fast = a - b/2;
         int phi_fast = a-b;
@@ -107,7 +133,7 @@ public class Population {
     }
 
     //prints the payoff matrix
-    public static void printMatrix(int[][][] matrix){
+    public synchronized static void printMatrix(int[][][] matrix){
         System.out.println();
         System.out.println("     F      P");
         for (int i = 0; i < matrix.length; i++) {
@@ -139,10 +165,11 @@ public class Population {
         chart_ratio.addSeries("Coy_ratio", Time, Ratios[2]);
         chart_ratio.addSeries("Fast_ratio", Time, Ratios[3]);
 
-        new SwingWrapper(chart).displayChart();
         new SwingWrapper(chart_ratio).displayChart();
+        new SwingWrapper(chart).displayChart();
 
-        BitmapEncoder.saveBitmap(chart, "./Chart_population", BitmapEncoder.BitmapFormat.PNG);
-        BitmapEncoder.saveBitmap(chart_ratio, "./Chart_ratio", BitmapEncoder.BitmapFormat.PNG);
+
+        //BitmapEncoder.saveBitmap(chart, "./Chart_population", BitmapEncoder.BitmapFormat.PNG);
+        //BitmapEncoder.saveBitmap(chart_ratio, "./Chart_ratio", BitmapEncoder.BitmapFormat.PNG);
     }
 }

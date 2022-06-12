@@ -8,14 +8,8 @@ public class Individual extends Thread {
      */
 
     protected int type;
-    protected int points = 4;   //initial points
+    protected int points = 6;   //initial points
     public volatile int numberChildren = 0;
-    protected static int maxChildren = 3; // todo until Equilibrium is reached
-
-    protected static final int a = 15;     //benefit of having a baby
-    protected static final int b = 20;     //cost of having a baby !!always even!!
-    protected static final int c = 3;      //cost of courtship
-
 
     public Individual (int type) {
         this.type = type;

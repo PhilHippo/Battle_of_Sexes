@@ -10,15 +10,20 @@ public class Fast extends Female {
 
     @Override
     public void run() {
-        super.run();
+        try {
+            sleep(10);
+            super.run();
+
+        } catch (InterruptedException e) {
+        }
     }
 
     @Override
     public synchronized void giveBirth(Male gentleman){
 
         if (isPhilanderer(gentleman.type)){
-            gentleman.points += a;
-            this.points += (a-b);
+            gentleman.points += Population.a;
+            this.points += (Population.a- Population.b);
 
             if(random.nextBoolean()){
                 Fast ind = new Fast();
@@ -32,8 +37,8 @@ public class Fast extends Female {
 
         if (isFaithful(gentleman.type)){
 
-            gentleman.points += (a-b/2);
-            this.points += (a-b/2);
+            gentleman.points += (Population.a- Population.b/2);
+            this.points += (Population.a- Population.b/2);
 
             if(random.nextBoolean()){
                 Fast ind = new Fast();
@@ -44,10 +49,8 @@ public class Fast extends Female {
                 ind.start();
             }
         }
-
         this.numberChildren++;
         gentleman.numberChildren++;
-
         this.notify();
     }
 }

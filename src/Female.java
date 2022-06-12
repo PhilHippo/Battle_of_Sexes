@@ -5,36 +5,24 @@ public class Female extends Individual{
     }
 
     @Override
-    public synchronized void run() { //&& numberChildren < maxChildren
+    public synchronized void run() {
         while(Main.untilEquilibriumReached) {
             while(Time.day) {
                 Population.club.push(this);
                 try {
                     wait();
-                    // start check points
-                    /*
-                    if (this.points < 1) {
+                    // start check points|| this.numberChildren >= Population.maxChildren
+                    if (this.points < 0) {
                         synchronized (Population.numberIndividuals) {
                             Population.numberIndividuals[this.type]--;
                         }
-                        System.out.println("morte");
+                        interrupt();
                         return;
                     }
-                     */
-                    // start check children
-                    /*
-                    if (this.numberChildren >= maxChildren) {
-                        return;
-                    }
-                     */
-                    // end checks
-                    //sleep(40); // troppo irrequieti
                 } catch (InterruptedException dying) {}
             }
-
-            // it is night here: does nothing
+            this.points-= Population.d;
         }
-        // todo per ora muoiono solo le fast
     }
 
     public synchronized void giveBirth(Male gentleman) throws InterruptedException{}

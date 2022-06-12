@@ -12,26 +12,18 @@ public class Male extends Individual{
                 try {
                     Female myGirl = Population.club.pop();
                     myGirl.giveBirth(this);
-                    /* start check points
+                    // start check points || this.numberChildren >= Population.maxChildren
                     if (this.points < 1) {
                         synchronized (Population.numberIndividuals) {
                             Population.numberIndividuals[this.type]--;
                         }
-                        return;
-                    }*/
-                    // start check children
-                    /*
-                    if (this.numberChildren >= maxChildren) {
+                        interrupt();
                         return;
                     }
-                     */
-                    // end checks
-                    //sleep(40); // troppo irrequieti
+
                 } catch (InterruptedException dying) {}
             }
-
-            // it is night here: does nothing
+            this.points-= Population.d;
         }
-        // todo per ora muoiono solo le fast
     }
 }

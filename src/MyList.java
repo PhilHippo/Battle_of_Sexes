@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MyList extends ArrayList<Female> {
 
@@ -7,15 +8,14 @@ public class MyList extends ArrayList<Female> {
         //System.out.println("I'm in the club");
         notifyAll();
     }
-    public void shuffle() {
-        this.shuffle();
-    }
+
     public synchronized Female pop() throws InterruptedException{
         while (this.isEmpty()) {
             if (!Main.untilEquilibriumReached) throw new InterruptedException(); // the club has been closed
             //System.out.println("Where is everybody?");
             wait();
         }
-        return this.remove(0);
+        Random r = new Random();
+        return this.remove(r.nextInt(0, this.size()));
     }
 }
