@@ -16,6 +16,7 @@ public class MyList extends ArrayList<Female> {
             wait();
         }
         Random r = new Random();
-        return this.remove(r.nextInt(0, this.size()));
+        //r.nextInt(0, this.size())
+        return this.remove(this.size()-1);
     }
 }

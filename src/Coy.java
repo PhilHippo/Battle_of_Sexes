@@ -11,7 +11,7 @@ public class Coy extends Female {
     @Override
     public void run() {
         try {
-            sleep(13); // troppo irrequieti
+            sleep(20); //12 troppo irrequieti
             super.run();
 
         } catch (InterruptedException e) {
@@ -22,17 +22,15 @@ public class Coy extends Female {
     public synchronized void giveBirth(Male gentleman) throws InterruptedException {
 
         if (isFaithful(gentleman.type)){
-            sleep(10);
-            gentleman.sleep(15);
+            sleep(30);
+            gentleman.sleep(30);
             gentleman.points += (Population.a- Population.b/2- Population.c);
             this.points += (Population.a- Population.b/2- Population.c);
 
             if(random.nextBoolean()){
-                Coy ind = new Coy();
-                ind.start();
+                new Coy().start();
             }else{
-                Faithful ind = new Faithful();
-                ind.start();
+                new Faithful().start();
             }
         }
         this.numberChildren++;

@@ -14,17 +14,17 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException, IOException {
 
-        Population p = new Population(25,25,25,25,15 , 20, 3, 5);
+        Population p = new Population(100,100,100,100,15 , 20, 3, 30);
         Population.printMalesFemalesTot(); // initial condition
         Population.updateGraph(0); // graph at time zero
 
         int i = 0;
-        while (i < 150) {
+        while (i < 100) {
             i++;
             Time.dayTime(30); // true
             Time.nightTime(i); // false
             //Population.printMalesFemalesTot();
-            //assert (Population.numberIndividuals ==);
+            //coy should be 83%, faithful should be 62%
         }
         Main.untilEquilibriumReached = false;
 

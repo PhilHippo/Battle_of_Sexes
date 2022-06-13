@@ -12,7 +12,7 @@ public class Population { // a b c d should be final but there are problems
     public static volatile int[] numberIndividuals = new int[4]; // population counter
     public static volatile MyList club = new MyList();
     public static ArrayList<ArrayList<Integer>> trendPopulation = new ArrayList<>();
-    protected static int maxChildren = 2; // todo until Equilibrium is reached
+    protected static int maxChildren = 4; // todo until Equilibrium is reached
     static ArrayList<Integer> X_time = new ArrayList<>();
 
     public Population (int phil, int faith, int coy, int fast, int av, int bv, int cv, int dv) {

@@ -11,7 +11,7 @@ public class Female extends Individual{
                 Population.club.push(this);
                 try {
                     wait();
-                    // start check points|| this.numberChildren >= Population.maxChildren
+                    // start check points || this.numberChildren >= Population.maxChildren
                     if (this.points < 0) {
                         synchronized (Population.numberIndividuals) {
                             Population.numberIndividuals[this.type]--;
@@ -20,7 +20,7 @@ public class Female extends Individual{
                         return;
                     }
                 } catch (InterruptedException dying) {
-                    System.out.println("I died in yo arms tonight. controllare cosa significa questo messaggio in female 23");
+                    System.out.println("I died in yo arms tonight. Type " + this.type + ", controllare cosa significa questo messaggio in female 23");
                 }
             }
             this.points-= Population.d;

@@ -7,11 +7,10 @@ public class Faithful extends Male {
     @Override
     public void run() {
         try {
-            sleep(50); // troppo irrequieti
+            sleep(45); //85 50 troppo irrequieti
             super.run();
 
         } catch (InterruptedException e) {
-            e.printStackTrace();
             System.out.println("interrupted faithful");
         }
     }
