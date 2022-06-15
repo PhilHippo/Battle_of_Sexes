@@ -31,6 +31,14 @@ public class Individual extends Thread {
         return tag == 1;
     }
 
+    public boolean isCoy(int tag){
+        return tag == 2;
+    }
+
+    public boolean isFast(int tag){
+        return tag == 3;
+    }
+
     @Override
     public void run () {
     }

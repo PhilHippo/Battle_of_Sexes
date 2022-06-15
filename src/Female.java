@@ -16,7 +16,7 @@ public class Female extends Individual{
                         synchronized (Population.numberIndividuals) {
                             Population.numberIndividuals[this.type]--;
                         }
-                        interrupt();
+                        this.interrupt();
                         return;
                     }
                 } catch (InterruptedException dying) {
