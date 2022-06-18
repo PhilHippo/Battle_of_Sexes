@@ -18,8 +18,7 @@ public class Time {
 
     public static void nightTime(int gen){
         day = false;
-        //System.out.print("It is night");
-        //System.out.println(Arrays.toString(Population.numberIndividuals));
+        System.out.println("iterazione "+gen+" "+Arrays.toString(Population.numberIndividuals));
         Population.updateGraph(gen);
     }
 }

@@ -20,7 +20,7 @@ public class Main {
         Population.updateGraph(0); // graph at time zero
 
         int i = 0;
-        while (i < 400) {
+        while (i < 300) {
             i++;
             Time.dayTime(30); // true
             Time.nightTime(i); // false

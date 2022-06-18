@@ -24,7 +24,7 @@ public class Fast extends Female {
 
         if (isPhilanderer(gentleman.type)){
             gentleman.points += Population.a;
-            this.points += (Population.a- Population.b);
+            this.points += (Population.a - Population.b);
 
             if(random.nextBoolean()){
                 Fast pers = new Fast();
@@ -37,15 +37,17 @@ public class Fast extends Female {
         }
 
         if (isFaithful(gentleman.type)){
-            gentleman.sleep(15);
-            gentleman.points += (Population.a- Population.b/2);
-            this.points += (Population.a- Population.b/2);
+
+            int wait_time = (int)((Population.payoff_FC*100f)/(Population.payoff_FC+Population.payoff_FS));
+            gentleman.sleep(wait_time);
+            this.sleep(wait_time);
+            gentleman.points += (Population.payoff_FS);
+            this.points += (Population.payoff_FS);
 
             if(random.nextBoolean()){
                 Fast pers = new Fast();
                 pers.start();
-            }
-            else{
+            }else{
                 Faithful pers = new Faithful();
                 pers.start();
             }
