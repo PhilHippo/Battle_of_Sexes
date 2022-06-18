@@ -11,18 +11,19 @@ public class Coy extends Female {
     @Override
     public void run() {
         try {
-            sleep(0); //12 troppo irrequieti
+            sleep(10); //12 troppo irrequieti
             super.run();
 
         } catch (InterruptedException e) {
+            System.out.println("Interrupted coy");
         }
     }
 
     @Override
     public synchronized void giveBirth(Male gentleman) throws InterruptedException {
         if (isFaithful(gentleman.type)){
-            sleep(0);
-            gentleman.sleep(0);
+            sleep(20);
+            gentleman.sleep(20);
             gentleman.points += (Population.a- Population.b/2- Population.c);
             this.points += (Population.a- Population.b/2- Population.c);
 
@@ -37,10 +38,7 @@ public class Coy extends Female {
             this.numberChildren++;
             gentleman.numberChildren++;
 
-        if (isPhilanderer(gentleman.type)) {
-            System.out.println("phil + coy");
         }
-    }
         this.notify();
     }
 }

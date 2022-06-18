@@ -10,13 +10,6 @@ public class Male extends Individual{
             while(Time.day) {
                 try {
                     Female myGirl = Population.club.pop();
-                    // PROVA per dare un'altra chance al phil che trova la coy ---> idea stupida
-
-                    /*while (isPhilanderer(this.type) && isCoy(myGirl.type)) {
-                        System.out.println("phil " + Thread.currentThread().getName() +" ci riprova");
-                        sleep(15);
-                        myGirl = Population.club.pop();
-                    }*/
                     myGirl.giveBirth(this);
                     // start check points || this.numberChildren >= Population.maxChildren
                     if (this.points < 0) {

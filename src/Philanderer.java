@@ -7,10 +7,11 @@ public class Philanderer extends Male {
     @Override
     public void run() {
         try {
-            sleep(0); //12 troppo irrequieti
+            sleep(1); // troppo irrequieti
             super.run();
 
         } catch (InterruptedException e) {
+            System.out.println("Interrupted philanderer");
         }
     }
 }

@@ -11,10 +11,11 @@ public class Fast extends Female {
     @Override
     public void run() {
         try {
-            sleep(0);//14
+            sleep(1);//
             super.run();
 
         } catch (InterruptedException e) {
+            System.out.println("Interrupted fast");
         }
     }
 
@@ -36,7 +37,7 @@ public class Fast extends Female {
         }
 
         if (isFaithful(gentleman.type)){
-            gentleman.sleep(0);
+            gentleman.sleep(15);
             gentleman.points += (Population.a- Population.b/2);
             this.points += (Population.a- Population.b/2);
 

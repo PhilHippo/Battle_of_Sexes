@@ -12,7 +12,7 @@ public class Population { // a b c d should be final but there are problems
     public static volatile int[] numberIndividuals = new int[4]; // population counter
     public static volatile MyList club = new MyList();
     public static ArrayList<ArrayList<Integer>> trendPopulation = new ArrayList<>();
-    protected static int maxChildren = 4; // todo until Equilibrium is reached
+    protected static int maxChildren = 8; // todo until Equilibrium is reached
     static ArrayList<Integer> X_time = new ArrayList<>();
 
     public Population (int phil, int faith, int coy, int fast, int av, int bv, int cv, int dv) {
@@ -21,6 +21,7 @@ public class Population { // a b c d should be final but there are problems
         b = bv;
         c = cv;
         d = dv;
+
         // initialize trendPopulation
         for (int i=0; i<4; i++) {
             Population.trendPopulation.add(new ArrayList<Integer>());
@@ -98,23 +99,6 @@ public class Population { // a b c d should be final but there are problems
         ratio_array[2] = ratio_c;
         ratio_array[3] = ratio_s;
         return ratio_array;
-    }
-
-    public static void hard_life(){
-
-    }
-    protected Thread[] getGroupThreads( final ThreadGroup group ) {
-        if ( group == null )
-            throw new NullPointerException( "Null thread group" );
-        int nAlloc = group.activeCount( );
-        int n = 0;
-        Thread[] threads;
-        do {
-            nAlloc *= 2;
-            threads = new Thread[ nAlloc ];
-            n = group.enumerate( threads );
-        } while ( n == nAlloc );
-        return java.util.Arrays.copyOf( threads, n );
     }
 
     //return the payoff matrix - phi_coy = 0 and fast_phi = a
