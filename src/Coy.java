@@ -30,10 +30,10 @@ public class Coy extends Female {
             gentleman.points += (Population.payoff_FC);
             this.points += (Population.payoff_FC);
 
-            if(random.nextInt(0,100)==10){
+            /*if(random.nextInt(0,100)==10){
                 mutation(gentleman);
                 return;
-            }
+            }*/
 
             if(random.nextBoolean()){
                 Coy pers = new Coy();

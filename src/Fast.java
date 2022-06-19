@@ -26,7 +26,7 @@ public class Fast extends Female {
             gentleman.points += Population.a;
             this.points += (Population.a - Population.b);
 
-            if(random.nextInt(0,100)==10){
+           /* if(random.nextInt(0,100)==10){
                 if(random.nextBoolean()){
                     Coy pers = new Coy();
                     pers.start();
@@ -36,7 +36,7 @@ public class Fast extends Female {
                     pers.start();
                 }
                 return;
-            }
+            }*/
 
             if(random.nextBoolean()){
                 Fast pers = new Fast();
@@ -56,10 +56,10 @@ public class Fast extends Female {
             gentleman.points += (Population.payoff_FS);
             this.points += (Population.payoff_FS);
 
-            if(random.nextInt(0,100)==10){
+            /*if(random.nextInt(0,100)==10){
                 mutation(gentleman);
                 return;
-            }
+            }*/
 
             if(random.nextBoolean()){
                 Fast pers = new Fast();
