@@ -11,7 +11,7 @@ public class Male extends Individual{
                 try {
                     Female myGirl = Population.club.pop();
                     myGirl.giveBirth(this);
-                    // start check points || this.numberChildren >= Population.maxChildren
+                    // start check points
                     if (this.points < 0) {
                         synchronized (Population.numberIndividuals) {
                             Population.numberIndividuals[this.type]--;

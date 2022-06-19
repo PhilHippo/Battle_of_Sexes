@@ -2,6 +2,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Set;
 
+import static java.lang.Thread.sleep;
+
 public class Main {
 
     public static boolean untilEquilibriumReached = true;
@@ -15,12 +17,12 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException, IOException {
 
-        Population p = new Population(100,100,100,100,15 , 20, 3, 6);
+        Population p = new Population(10,10,10,10,15 , 20, 3, 6);
         Population.printMalesFemalesTot(); // initial condition
         Population.updateGraph(0); // graph at time zero
 
         int i = 0;
-        while (i < 300) {
+        while (i < 500) {
             i++;
             Time.dayTime(30); // true
             Time.nightTime(i); // false
@@ -36,14 +38,13 @@ public class Main {
             for (Female f : Population.club) {
                 f.interrupt();
             }
-
             System.out.println("The club is CLOSED!");
         }).start();
-        //Thread.sleep(100); // just to wait for the bodyguard to finish
+
+        Thread.sleep(100); // just to wait for the bodyguard to finish
         System.out.println(); // so the prints at the end are in order and separated
         System.out.println(Arrays.toString(Population.numberIndividuals));
         Population.printMalesFemalesTot();
-        //Population.printMatrix(Population.matrixCalculator());
         Population.printChart();
     }
 }
