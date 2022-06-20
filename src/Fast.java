@@ -15,7 +15,7 @@ public class Fast extends Female {
             super.run();
 
         } catch (InterruptedException e) {
-            //System.out.println("Interrupted fast");g
+            //System.out.println("Interrupted fast");
         }
     }
 
@@ -25,19 +25,6 @@ public class Fast extends Female {
         if (isPhilanderer(gentleman.type)){
             gentleman.points += Population.a;
             this.points += (Population.a - Population.b);
-
-           /* if(random.nextInt(0,100)==10){
-                if(random.nextBoolean()){
-                    Coy pers = new Coy();
-                    pers.start();
-                }
-                else {
-                    Faithful pers = new Faithful();
-                    pers.start();
-                }
-                return;
-            }*/
-
             if(random.nextBoolean()){
                 Fast pers = new Fast();
                 pers.start();
@@ -47,23 +34,12 @@ public class Fast extends Female {
                 pers.start();
             }
         }
-
         if (isFaithful(gentleman.type)){
-
             int wait_time = (int)((Population.payoff_FC*100f)/(Population.payoff_FC+Population.payoff_FS));
-            gentleman.sleep(wait_time);
-            this.sleep(wait_time);
             gentleman.points += (Population.payoff_FS);
             this.points += (Population.payoff_FS);
-            /*gentleman.sleep(70);
-            gentleman.points += (Population.a- Population.b/2);
-            this.points += (Population.a- Population.b/2);*/
-
-            /*if(random.nextInt(0,100)==10){
-                mutation(gentleman);
-                return;
-            }*/
-
+            gentleman.sleep(wait_time);
+            this.sleep(wait_time);
             if(random.nextBoolean()){
                 Fast pers = new Fast();
                 pers.start();

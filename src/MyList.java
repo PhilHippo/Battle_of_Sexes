@@ -12,8 +12,8 @@ public class MyList extends ArrayList<Female> {
     public synchronized Female pop(int type) throws InterruptedException{
         while (this.isEmpty()) {
             if (!Main.untilEquilibriumReached) throw new InterruptedException(); // the club has been closed
-
-            if ((type == 0 && Population.numberIndividuals[2] == 0) || (Population.numberIndividuals[2] == 0 && Population.numberIndividuals[2] == 0)){
+            //
+            if ((type == 0 && Population.numberIndividuals[3] == 0) || (Population.numberIndividuals[3] == 0 && Population.numberIndividuals[2] == 0)){
                 return null;
                 //Population.numberIndividuals[this.type];
             }
