@@ -11,7 +11,7 @@ public class Philanderer extends Male {
             super.run();
 
         } catch (InterruptedException e) {
-            System.out.println("Interrupted philanderer");
+            //System.out.println("Interrupted philanderer");
         }
     }
 }

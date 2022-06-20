@@ -9,7 +9,6 @@ public class Individual extends Thread {
 
     protected int type;
     protected int points = 8;   //initial points
-    public volatile int numberChildren = 0;
 
     public Individual (int type) {
         this.type = type;

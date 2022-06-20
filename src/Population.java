@@ -12,8 +12,7 @@ public class Population { // a b c d should be final but there are problems
     public static volatile int[] numberIndividuals = new int[4]; // population counter
     public static volatile MyList club = new MyList();
     public static ArrayList<ArrayList<Integer>> trendPopulation = new ArrayList<>();
-    protected static int maxChildren = 8; // todo until Equilibrium is reached
-    static ArrayList<Integer> X_time = new ArrayList<>();
+    public static ArrayList<Integer> X_time = new ArrayList<>();
     public static int payoff_FC;
     public static int payoff_FS;
 
@@ -80,12 +79,14 @@ public class Population { // a b c d should be final but there are problems
     }
 
     public static int[][] get_ratio(){
+
         int[][] ratio_array = new  int[4][];
         int len = trendPopulation.get(1).size();
         int[] ratio_p = new int[len];
         int[] ratio_f = new int[len];
         int[] ratio_c = new int[len];
         int[] ratio_s = new int[len];
+
         for(int i = 0; i < len; i++){
             float sumMales = trendPopulation.get(0).get(i) + trendPopulation.get(1).get(i);
             float sumFemales = trendPopulation.get(2).get(i)  + trendPopulation.get(3).get(i);
@@ -106,35 +107,8 @@ public class Population { // a b c d should be final but there are problems
         return ratio_array;
     }
 
-    //return the payoff matrix - phi_coy = 0 and fast_phi = a
-    public static int[][][] matrixCalculator(){
-        int faith_coy = a - b/2 - c;
-        int faith_fast = a - b/2;
-        int phi_fast = a-b;
 
-        return new int[][][]{{{faith_coy, faith_coy},{0, 0}},{{faith_fast, faith_fast},{phi_fast, a}}};
-    }
-
-    // TODO
-    public static int[] equilibriumCalculator(){
-        int[] equilibrium = new int[]{};
-        return equilibrium;
-    }
-
-    //prints the payoff matrix
-    public synchronized static void printMatrix(int[][][] matrix){
-        System.out.println();
-        System.out.println("     F      P");
-        for (int i = 0; i < matrix.length; i++) {
-            if (i == 0){System.out.print("C ");}else{System.out.print("S ");}
-            for (int j = 0; j < matrix[i].length; j++) {
-                System.out.print(Arrays.toString(matrix[i][j]) + " ");
-            }
-            System.out.println();
-        }
-    }
-
-    public static void printChart() {
+    public static void printChart() throws IOException{
         int[] Y_Phil = convertIntegers(trendPopulation.get(0));
         int[] Y_Faith = convertIntegers(trendPopulation.get(1));
         int[] Y_Coy = convertIntegers(trendPopulation.get(2));
@@ -157,8 +131,7 @@ public class Population { // a b c d should be final but there are problems
         new SwingWrapper(chart_ratio).displayChart();
         new SwingWrapper(chart).displayChart();
 
-
-        //BitmapEncoder.saveBitmap(chart, "./Chart_population", BitmapEncoder.BitmapFormat.PNG);
-        //BitmapEncoder.saveBitmap(chart_ratio, "./Chart_ratio", BitmapEncoder.BitmapFormat.PNG);
+        ///BitmapEncoder.saveBitmap(chart, "./Chart_population_1", BitmapEncoder.BitmapFormat.PNG);
+        //BitmapEncoder.saveBitmap(chart_ratio, "./Chart_ratio_1", BitmapEncoder.BitmapFormat.PNG);
     }
 }

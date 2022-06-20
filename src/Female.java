@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Female extends Individual{
 
     public Female (int type) {
@@ -11,7 +13,7 @@ public class Female extends Individual{
                 Population.club.push(this);
                 try {
                     wait();
-                    // start check points || this.numberChildren >= Population.maxChildren
+                    // start check points
                     if (this.points < 0) {
                         synchronized (Population.numberIndividuals) {
                             Population.numberIndividuals[this.type]--;
@@ -28,4 +30,16 @@ public class Female extends Individual{
     }
 
     public synchronized void giveBirth(Male gentleman) throws InterruptedException{}
+
+    public synchronized void mutation(Male gentleman) throws InterruptedException{
+        Random random = new Random();
+        if(random.nextBoolean()){
+            Coy pers = new Coy();
+            pers.start();
+        }else{
+            Faithful pers = new Faithful();
+            pers.start();
+        }
+        this.notify();
+    }
 }

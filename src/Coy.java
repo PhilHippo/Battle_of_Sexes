@@ -15,12 +15,13 @@ public class Coy extends Female {
             super.run();
 
         } catch (InterruptedException e) {
-            System.out.println("Interrupted coy");
+            //System.out.println("Interrupted coy");
         }
     }
 
     @Override
     public synchronized void giveBirth(Male gentleman) throws InterruptedException {
+
         if (isFaithful(gentleman.type)){
 
             int wait_time = (int)((Population.payoff_FS*100f)/(Population.payoff_FC+Population.payoff_FS));
@@ -33,18 +34,21 @@ public class Coy extends Female {
             gentleman.points += (Population.a- Population.b/2- Population.c);
             this.points += (Population.a- Population.b/2- Population.c);*/
 
+            /*if(random.nextInt(0,100)==10){
+                mutation(gentleman);
+                return;
+            }*/
+
             if(random.nextBoolean()){
                 Coy pers = new Coy();
                 pers.start();
             }else{
                 Faithful pers = new Faithful();
                 pers.start();
-
             }
-            this.numberChildren++;
-            gentleman.numberChildren++;
 
         }
         this.notify();
     }
+
 }

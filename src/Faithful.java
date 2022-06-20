@@ -11,7 +11,7 @@ public class Faithful extends Male {
             super.run();
 
         } catch (InterruptedException e) {
-            System.out.println("Interrupted faithful");
+            //System.out.println("Interrupted faithful");
         }
     }
 }
