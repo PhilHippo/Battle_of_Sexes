@@ -27,7 +27,7 @@ public class Main {
             Time.dayTime(30); // true
             Time.nightTime(i); // false
             //Population.printMalesFemalesTot();
-            //coy should be 83%, faithful should be 62%
+            //coy should be 83% and faithful should be 62%
         }
         Main.untilEquilibriumReached = false;
 

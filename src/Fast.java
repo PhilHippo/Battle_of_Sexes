@@ -15,7 +15,7 @@ public class Fast extends Female {
             super.run();
 
         } catch (InterruptedException e) {
-            //System.out.println("Interrupted fast");
+            //System.out.println("Interrupted fast");g
         }
     }
 

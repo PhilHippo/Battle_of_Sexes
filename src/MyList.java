@@ -5,7 +5,7 @@ public class MyList extends ArrayList<Female> {
 
     public synchronized void push(Female female) {
         this.add(female);
-        //System.out.println("I'm in the club");
+        //System.out.println("I'm in the club");j
         notifyAll();
     }
 

@@ -9,7 +9,7 @@ public class Population { // a b c d should be final but there are problems
     protected static int b;     //cost of having a baby !!always even!!
     protected static int c;     //cost of courtship
     protected static int d;     //cost of life
-    public static volatile int[] numberIndividuals = new int[4]; // population counter
+    public static volatile int[] numberIndividuals = new int[4]; // population counteri
     public static volatile MyList club = new MyList();
     public static ArrayList<ArrayList<Integer>> trendPopulation = new ArrayList<>();
     public static ArrayList<Integer> X_time = new ArrayList<>();

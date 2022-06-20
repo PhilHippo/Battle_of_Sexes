@@ -15,7 +15,7 @@ public class Coy extends Female {
             super.run();
 
         } catch (InterruptedException e) {
-            //System.out.println("Interrupted coy");
+            //System.out.println("Interrupted coy");g
         }
     }
 

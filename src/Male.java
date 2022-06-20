@@ -13,7 +13,7 @@ public class Male extends Individual{
                     if (myGirl != null) {
                         myGirl.giveBirth(this);
                     }
-                    // start check points || this.numberChildren >= Population.maxChildren
+                    // start check points
                     if (this.points < 0) {
                         synchronized (Population.numberIndividuals) {
                             Population.numberIndividuals[this.type]--;
@@ -22,7 +22,7 @@ public class Male extends Individual{
                         return;
                     }
                 } catch (InterruptedException dying) {
-                    //System.out.println("You died in ma arms tonight. Type " + this.type + ", controllare cosa significa questo messaggio in male 25");
+                    //System.out.println("You died in my arms tonight. Type " + this.type + ", controllare cosa significa questo messaggio in male 25");
                 }
             }
             this.points-= Population.d;

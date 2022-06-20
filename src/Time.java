@@ -12,7 +12,7 @@ public class Time {
 
     public static void dayTime(long millis) throws InterruptedException{
         day = true;
-        //System.out.println("It is day");
+        //System.out.println("It is day");g
         Thread.sleep(millis);
     }
 
