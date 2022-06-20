@@ -15,6 +15,7 @@ public class Population { // a b c d should be final but there are problems
     public static ArrayList<Integer> X_time = new ArrayList<>();
     public static int payoff_FC;
     public static int payoff_FS;
+    public static int payoff_PS;
 
     public Population (int phil, int faith, int coy, int fast, int av, int bv, int cv, int dv) {
         this.createIndividuals(phil, faith, coy, fast);
@@ -24,7 +25,7 @@ public class Population { // a b c d should be final but there are problems
         d = dv;
         payoff_FC = a-b/2-c;
         payoff_FS = a-b/2;
-
+        payoff_PS = a-b;
 
         // initialize trendPopulation
         for (int i=0; i<4; i++) {

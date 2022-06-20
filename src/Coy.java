@@ -21,11 +21,8 @@ public class Coy extends Female {
 
     @Override
     public synchronized void giveBirth(Male gentleman) throws InterruptedException {
-
         if (isFaithful(gentleman.type)){
             int wait_time = (int)((Population.payoff_FS*100f)/(Population.payoff_FC+Population.payoff_FS));
-            gentleman.points += (Population.payoff_FC);
-            this.points += (Population.payoff_FC);
             sleep(wait_time);
             gentleman.sleep(wait_time);
             if(random.nextBoolean()){
@@ -35,7 +32,9 @@ public class Coy extends Female {
                 Faithful pers = new Faithful();
                 pers.start();
             }
-        }
+            gentleman.points += (Population.payoff_FC);
+            this.points += (Population.payoff_FC);
+            }
         this.notify();
     }
 

@@ -17,7 +17,7 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException, IOException {
 
-        Population p = new Population(100,100,100,100,15 , 20, 3, 6);
+        Population p = new Population(100,100,100,100,15 , 20, 3, 10);
         Population.printMalesFemalesTot(); // initial condition
         Population.updateGraph(0); // graph at time zero
 
