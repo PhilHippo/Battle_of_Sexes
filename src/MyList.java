@@ -9,14 +9,17 @@ public class MyList extends ArrayList<Female> {
         notifyAll();
     }
 
-    public synchronized Female pop() throws InterruptedException{
+    public synchronized Female pop(int type) throws InterruptedException{
         while (this.isEmpty()) {
             if (!Main.untilEquilibriumReached) throw new InterruptedException(); // the club has been closed
-            //System.out.println("Where is everybody?");
+
+            if ((type == 0 && Population.numberIndividuals[2] == 0) || (Population.numberIndividuals[2] == 0 && Population.numberIndividuals[2] == 0)){
+                return null;
+                //Population.numberIndividuals[this.type];
+            }
             wait();
         }
         Random r = new Random();
-        //this.size()-1
         return this.remove(r.nextInt(0, this.size()));
     }
 }

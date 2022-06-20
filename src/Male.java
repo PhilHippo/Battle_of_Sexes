@@ -9,8 +9,10 @@ public class Male extends Individual{
         while(Main.untilEquilibriumReached) {
             while(Time.day) {
                 try {
-                    Female myGirl = Population.club.pop();
-                    myGirl.giveBirth(this);
+                    Female myGirl = Population.club.pop(this.type);
+                    if (myGirl != null) {
+                        myGirl.giveBirth(this);
+                    }
                     // start check points || this.numberChildren >= Population.maxChildren
                     if (this.points < 0) {
                         synchronized (Population.numberIndividuals) {

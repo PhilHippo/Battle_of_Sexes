@@ -28,6 +28,10 @@ public class Coy extends Female {
             gentleman.sleep(wait_time);
             gentleman.points += (Population.payoff_FC);
             this.points += (Population.payoff_FC);
+            /*sleep(70);
+            gentleman.sleep(70);
+            gentleman.points += (Population.a- Population.b/2- Population.c);
+            this.points += (Population.a- Population.b/2- Population.c);*/
 
             if(random.nextBoolean()){
                 Coy pers = new Coy();

@@ -134,7 +134,7 @@ public class Population { // a b c d should be final but there are problems
         }
     }
 
-    public static void printChart() throws IOException {
+    public static void printChart() {
         int[] Y_Phil = convertIntegers(trendPopulation.get(0));
         int[] Y_Faith = convertIntegers(trendPopulation.get(1));
         int[] Y_Coy = convertIntegers(trendPopulation.get(2));

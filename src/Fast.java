@@ -11,7 +11,7 @@ public class Fast extends Female {
     @Override
     public void run() {
         try {
-            sleep(1);//
+            sleep(10);//
             super.run();
 
         } catch (InterruptedException e) {
@@ -43,6 +43,9 @@ public class Fast extends Female {
             this.sleep(wait_time);
             gentleman.points += (Population.payoff_FS);
             this.points += (Population.payoff_FS);
+            /*gentleman.sleep(70);
+            gentleman.points += (Population.a- Population.b/2);
+            this.points += (Population.a- Population.b/2);*/
 
             if(random.nextBoolean()){
                 Fast pers = new Fast();
