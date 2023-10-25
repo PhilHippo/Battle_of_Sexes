@@ -28,3 +28,7 @@ The goal of our software is to perform non-deterministic simulations that are pa
 ## Authors
 
 ![](./README_images/CONTRIBUTORS.svg)
+
+## License
+
+Battle_of_Sexes is released under the [MIT License](../LICENSE).
