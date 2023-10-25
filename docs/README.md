@@ -24,3 +24,6 @@ Each type of Individual has different strategy of survival:
 ## Goal
 
 The goal of our software is to perform non-deterministic simulations that are parametric to the a, b, c values taking into account the behavior of male and female types and returning the percentages of the four categories of people at the end of the simulation, analyzing the system’s equilibrium state.
+
+## Authors
+
