@@ -1,104 +1,138 @@
+import org.knowm.xchart.*;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.Arrays;
 
-public class Population {
-    private volatile int n; // # completo
-    private boolean status; // attivo/disattivo
-    public static volatile int[] n_individuals = new int[4];
-    private volatile List<Individual> individuals; // lista di tutte le persone
-    private double resources; // pizza pasta maccaroni
-    public int iterazione = 0; // # generazione
-    protected Settings settings; // impostazioni
-    protected double initial_point;
+public class Population { // a b c d should be final but there are problems
 
-    public void mating() throws InterruptedException {
-    Random radmon = new Random();
-        for (int i = 0; i < individuals.size()/2; i++) {
-            individuals.get(i).give_birth(individuals.get(radmon.nextInt(individuals.size()/2, individuals.size())),3,this);
-        }
-        /*for (int i = individuals.size()/2+1; i < individuals.size(); i++) {
-            individuals.get(i).give_birth(individuals.get(radmon.nextInt(0, individuals.size()/2)),3,this);
-        }*/
-    }
-    //constructor with only n_of_people and r of resources, random n of each type of people
-    public Population(Settings s, int phil, int faith, int coy, int fast){
-        this.settings=s;
-        this.status = true;
-        this.resources = s.resources_available;
-        this.individuals = new ArrayList<Individual>();
-        this.initial_point = settings.initial_points;
-        this.create_people(faith,phil,coy,fast, initial_point);
-    }
+    protected static int a;     //benefit of having a baby
+    protected static int b;     //cost of having a baby !!always even!!
+    protected static int c;     //cost of courtship
+    protected static int d;     //cost of life
+    public static volatile int[] numberIndividuals = new int[4]; // population counteri
+    public static volatile MyList club = new MyList();
+    public static ArrayList<ArrayList<Integer>> trendPopulation = new ArrayList<>();
+    public static ArrayList<Integer> X_time = new ArrayList<>();
+    public static int payoff_FC;
+    public static int payoff_FS;
+    public static int payoff_PS;
 
+    public Population (int phil, int faith, int coy, int fast, int av, int bv, int cv, int dv) {
+        this.createIndividuals(phil, faith, coy, fast);
+        a = av;
+        b = bv;
+        c = cv;
+        d = dv;
+        payoff_FC = a-b/2-c;
+        payoff_FS = a-b/2;
+        payoff_PS = a-b;
 
-    private void create_people(int phil,int faith,int coy,int fast,double initial_point){
-        for (int i = 0; i < phil; i++) {
-            Philanderer person = new Philanderer(initial_point,this);
-            person.start();
-        }
-        for (int i = 0; i < faith; i++) {
-            Faithful person = new Faithful(initial_point,this);
-            person.start();
-        }
-        for (int i = 0; i < coy; i++) {
-            Coy person = new Coy(initial_point,this);
-            person.start();
-
-        }
-        for (int i = 0; i < fast; i++) {
-            Fast person = new Fast(initial_point,this);
-            person.start();
+        // initialize trendPopulation
+        for (int i=0; i<4; i++) {
+            Population.trendPopulation.add(new ArrayList<Integer>());
         }
     }
 
-    public static synchronized void increment (int type) {
-        n_individuals[type]++;
-    }
-
-    /*  public int[] updatetype() {
-        int [] arr = new int[4];
-        for (Individual i: individuals) {
-            if (i.tag == 3) {arr[3]++;}
-            if (i.tag == 2) {arr[2]++;}
-            if (i.tag == 1) {arr[1]++;}
-            if (i.tag == 0) {arr[0]++;}
+    private void createIndividuals (int phil, int faith, int coy, int fast) {
+        for (; phil>0; phil--) {
+            Philanderer ind = new Philanderer();
+            ind.start();
         }
-        return arr;
-    }*/
+        for (; faith>0; faith--) {
+            Faithful ind = new Faithful();
+            ind.start();
+        }
+        for (; coy>0; coy--) {
+            Coy ind = new Coy();
+            ind.start();
+        }
+        for (; fast>0; fast--) {
+            Fast ind = new Fast();
+            ind.start();
+        }
+    }
 
-    public static int[] get_values(int index,ArrayList<int[]> trends){
-        int size = trends.size();
-        int[] arr = new int[size];
-        for (int i = 0; i < size ; i++){
-            arr[i] = trends.get(i)[index];
+    public static void printMalesFemalesTot() {
+        int males = numberIndividuals[0] + numberIndividuals[1];
+        int females = numberIndividuals[2] + numberIndividuals[3];
+        System.out.print("Male population: " + males + ", ");
+        System.out.print("Female population: " + females + ", ");
+        System.out.println("Total: " + (males + females));
+    }
+
+    public static void updateGraph(int gen) {
+        Population.updateTrendPopulation();
+        Population.X_time.add(gen);
+    }
+
+    public static void updateTrendPopulation() {
+        for (int i = 0; i < 4; i++) {
+            Population.trendPopulation.get(i).add(Population.numberIndividuals[i]);
+        }
+    }
+
+    public static int[] convertIntegers(ArrayList<Integer> integers) {
+        int[] ret = new int[integers.size()];
+        for (int i = 0; i < ret.length; i++) {
+            ret[i] = integers.get(i);
+        }
+        return ret;
+    }
+
+    public static int[][] get_ratio(){
+
+        int[][] ratio_array = new  int[4][];
+        int len = trendPopulation.get(1).size();
+        int[] ratio_p = new int[len];
+        int[] ratio_f = new int[len];
+        int[] ratio_c = new int[len];
+        int[] ratio_s = new int[len];
+
+        for(int i = 0; i < len; i++){
+            float sumMales = trendPopulation.get(0).get(i) + trendPopulation.get(1).get(i);
+            float sumFemales = trendPopulation.get(2).get(i)  + trendPopulation.get(3).get(i);
+            int p = (int) ((trendPopulation.get(0).get(i) /sumMales) * 100);
+            int f = (int) ((trendPopulation.get(1).get(i) /sumMales) * 100);
+            int c = (int) ((trendPopulation.get(2).get(i) /sumFemales) * 100);
+            int s = (int) ((trendPopulation.get(3).get(i) /sumFemales) * 100);
+            ratio_p[i] = p;
+            ratio_f[i] = f;
+            ratio_c[i] = c;
+            ratio_s[i] = s;
         }
 
-        return arr;
+        ratio_array[0] = ratio_p;
+        ratio_array[1] = ratio_f;
+        ratio_array[2] = ratio_c;
+        ratio_array[3] = ratio_s;
+        return ratio_array;
     }
 
-    public int getIndividuals_n() {
-        return individuals.size();
-    }
-    public boolean getStatus(){ return this.status;}
-    public static int[] randomList(int m, int target) {
 
-        // Create an array of size m where
-        // every element is initialized to 0
-        int arr[] = new int[m];
-        Random radmon = new Random();
-        // To make the sum of the final list as n
-        for (int i = 0; i < target; i++)
-        {
-            // Increment any random element
-            // from the array by 1
-            arr[(int)(radmon.nextDouble(0.0,1.0) * m)]++;
-        }
-        return arr;
-    }
-    public List<Individual> getIndividuals() {
-        return individuals;
+    public static void printChart() throws IOException{
+        int[] Y_Phil = convertIntegers(trendPopulation.get(0));
+        int[] Y_Faith = convertIntegers(trendPopulation.get(1));
+        int[] Y_Coy = convertIntegers(trendPopulation.get(2));
+        int[] Y_Fast = convertIntegers(trendPopulation.get(3));
+        int[] Time = X_time.stream().mapToInt(Integer::intValue).toArray();
+        int[][] Ratios = get_ratio();
+
+        XYChart chart = new XYChartBuilder().width(1600).height(800).title("Population Trend").xAxisTitle("Time").yAxisTitle("Number of people").build();
+        chart.addSeries("Philanderer", Time, Y_Phil);
+        chart.addSeries("Faithful", Time, Y_Faith);
+        chart.addSeries("Coy", Time, Y_Coy);
+        chart.addSeries("Fast", Time, Y_Fast);
+
+        XYChart chart_ratio = new XYChartBuilder().width(1600).height(800).title("Population Ratio").xAxisTitle("Time").yAxisTitle("Ratio of people").build();
+        chart_ratio.addSeries("Philanderer_ratio", Time, Ratios[0]);
+        chart_ratio.addSeries("Faithful_ratio", Time, Ratios[1]);
+        chart_ratio.addSeries("Coy_ratio", Time, Ratios[2]);
+        chart_ratio.addSeries("Fast_ratio", Time, Ratios[3]);
+
+        new SwingWrapper(chart_ratio).displayChart();
+        new SwingWrapper(chart).displayChart();
+
+        ///BitmapEncoder.saveBitmap(chart, "./Chart_population_1", BitmapEncoder.BitmapFormat.PNG);
+        //BitmapEncoder.saveBitmap(chart_ratio, "./Chart_ratio_1", BitmapEncoder.BitmapFormat.PNG);
     }
 }
-
-

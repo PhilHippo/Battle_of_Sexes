@@ -1,63 +1,50 @@
-import org.knowm.xchart.*;
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Set;
 
-public class Main  {
-    //ci piace scopare ===> still no bitches tho
-        public static void main(String[] args) throws InterruptedException, IOException {
-            Settings sett = new Settings(0,0,1000000,3,50);
-            Population p = new Population(sett,10,10,10,10);//manually setting initial population
-            ArrayList<int[]> trend_population = new ArrayList<>();
-            ArrayList<Integer> X_time = new ArrayList<>();
-            int counter = 0;
-            System.out.println(p.getIndividuals_n());
-            /*Individual armando = new Philanderer(2,p);
-            Faithful astolfo = new Faithful(2,p);
-            Fast giulia = new Fast(2,p);*/
+import static java.lang.Thread.sleep;
 
-            while (counter < 10) {//while there isn't stability or resources aren't finished : resources are calculated and stored
-                //astolfo.give_birth(giulia,5,p);
-                //giulia.give_birth(armando,5,p);
-                p.mating(); //method in population that tells every random individual to try to copulate
-                p.iterazione++;
-                System.out.println(Arrays.toString(Population.n_individuals));
-                trend_population.add(Population.n_individuals.clone());
-                X_time.add(counter);
-                counter++;
+public class Main {
 
+    public static boolean untilEquilibriumReached = true;
+
+    /*  TYPES
+    PHILANDERER 0
+    FAITHFUL 1
+    COY 2
+    FAST 3
+     */
+
+    public static void main(String[] args) throws InterruptedException, IOException {
+
+        Population p = new Population(100,100,100,100,15 , 20, 3, 10);
+        Population.printMalesFemalesTot(); // initial condition
+        Population.updateGraph(0); // graph at time zero
+
+        int i = 0;
+        while (i < 600) {
+            i++;
+            Time.dayTime(30); // true
+            Time.nightTime(i); // false
+            //Population.printMalesFemalesTot();
+            //coy should be 83% and faithful should be 62%
+        }
+        Main.untilEquilibriumReached = false;
+
+        new Thread(() -> {
+            synchronized (Population.club) {
+                Population.club.notifyAll();
             }
-            System.out.println(p.getIndividuals_n());
+            for (Female f : Population.club) {
+                f.interrupt();
+            }
+            System.out.println("The club is CLOSED!");
+        }).start();
 
-            int[] Y_Phil = Population.get_values(0,trend_population);
-            int[] Y_Faith = Population.get_values(1,trend_population);
-            int[] Y_Coy = Population.get_values(2,trend_population);
-            int[] Y_Fast = Population.get_values(3,trend_population);
-            int[] Time = X_time.stream().mapToInt(Integer::intValue).toArray();
-
-
-        // Create Chart
-            XYChart chart = new XYChartBuilder().width(1600).height(800).title(Main.class.getSimpleName()).xAxisTitle("Generations").yAxisTitle("Number of people").build();
-            chart.addSeries("Philanderer", Time, Y_Phil);
-            chart.addSeries("Faithful", Time, Y_Faith);
-            chart.addSeries("Fast", Time, Y_Fast);
-            chart.addSeries("Coy", Time, Y_Coy);
-
-        // Show it
-            new SwingWrapper(chart).displayChart();
-        // Save it
-            BitmapEncoder.saveBitmap(chart, "./Sample_Chart", BitmapEncoder.BitmapFormat.PNG);
-        // or save it in high-res
-            //BitmapEncoder.saveBitmapWithDPI(chart, "./Sample_Chart_300_DPI", BitmapEncoder.BitmapFormat.PNG, 300);
-
-
+        //Thread.sleep(100); // just to wait for the bodyguard to finish
+        System.out.println(); // so the prints at the end are in order and separated
+        System.out.println(Arrays.toString(Population.numberIndividuals));
+        Population.printMalesFemalesTot();
+        Population.printChart();
     }
-
-
-
-
-
 }
-
-

@@ -1,18 +1,31 @@
 public class Male extends Individual{
 
-    public Male(double points, Population p, int tag){
-        super(tag, points, p);
+    public Male (int type) {
+        super(type);
     }
 
     @Override
-    public synchronized void give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {
-        while (partner.taken) {
-            wait();
+    public void run() {
+        while(Main.untilEquilibriumReached) {
+            while(Time.day) {
+                try {
+                    Female myGirl = Population.club.pop(this.type);
+                    if (myGirl != null) {
+                        myGirl.giveBirth(this);
+                    }
+                    // start check points
+                    if (this.points < 0) {
+                        synchronized (Population.numberIndividuals) {
+                            Population.numberIndividuals[this.type]--;
+                        }
+                        this.interrupt();
+                        return;
+                    }
+                } catch (InterruptedException dying) {
+                    //System.out.println("You died in my arms tonight. Type " + this.type + ", controllare cosa significa questo messaggio in male 25");
+                }
+            }
+            this.points-= Population.d;
         }
-        if (partner.tag == 0 || partner.tag == 1) return;
-        partner.give_birth(this , cross_rate, pop);
-
     }
-
-
 }

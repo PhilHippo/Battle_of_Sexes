@@ -1,39 +1,44 @@
-public abstract class Individual extends Thread{
-        protected int tag;
-        protected double points;
-        protected volatile boolean taken = false;
-        protected volatile Population p;
+public class Individual extends Thread {
 
-        /*  TAG
-        PHILANDERERS 0
-        FAITHFUL 1
-        COY 2
-        FAST 3
-         */
+    /*  TYPES
+    PHILANDERER 0
+    FAITHFUL 1
+    COY 2
+    FAST 3
+     */
 
-        public Individual(int tag, double points, Population p){
-            this.points=points;
-            this.tag = tag;
-            this.p = p;
-            p.getIndividuals().add(this);
+    protected int type;
+    protected int points = 8;   //initial points
 
-            synchronized (Population.n_individuals) {
-                int a = Population.n_individuals[tag] + 1;
-
-                try {  //this try catch seems useless but it's a must for the sync to work
-                    sleep(1);
-                } catch (InterruptedException ignored) {
-                }
-
-                Population.n_individuals[tag] = a;
-            }
+    public Individual (int type) {
+        this.type = type;
+        synchronized (Population.numberIndividuals) {
+            Population.numberIndividuals[type]++;
         }
+    }
 
-    public synchronized void give_birth(Individual partner, int cross_rate, Population pop) throws InterruptedException {}
-        public void run() {
-            if(this.points<0){
-            //p.n_individual[this.tag]--;
-            //p.getIndividuals().remove(this);
-            }
-        }
+    public Individual (int type, int points) {
+        this(type);
+        this.points = points;
+    }
+
+    public boolean isPhilanderer(int tag){
+        return tag == 0;
+    }
+
+    public boolean isFaithful(int tag){
+        return tag == 1;
+    }
+
+    public boolean isCoy(int tag){
+        return tag == 2;
+    }
+
+    public boolean isFast(int tag){
+        return tag == 3;
+    }
+
+    @Override
+    public void run () {
+    }
 }
