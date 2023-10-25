@@ -27,4 +27,4 @@ The goal of our software is to perform non-deterministic simulations that are pa
 
 ## Authors
 
-[]!(./README_images/CONTRIBUTORS.svg)
+![](./README_images/CONTRIBUTORS.svg)
